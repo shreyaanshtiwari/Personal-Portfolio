@@ -40,7 +40,7 @@ export const portfolioData = {
     },
   ],
   contact: {
-    email: "shreyaanshtiwari@gmail.com",
+    email: "shreyanshtiwari812@gmail.com",
     github: "https://github.com/shreyaanshtiwari",
     linkedin: "https://linkedin.com/in/shreyansh-kumar-tiwari",
   },

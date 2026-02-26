@@ -19,7 +19,7 @@ export const portfolioData = {
       description:
         "A fully responsive personal developer portfolio website to showcase my skills, projects, and contact information. Engineered with a component-driven architecture and optimized for modern web performance.",
       tech: ["Next.js", "TypeScript", "Tailwind CSS", "React"],
-      github: "https://github.com/#", // Placeholder
+      github: "https://github.com/shreyaanshtiwari/Personal-Portfolio.git",
       liveDemo: "",
     },
     {
@@ -40,9 +40,9 @@ export const portfolioData = {
     },
   ],
   contact: {
-    email: "shreyansh@example.com", // Placeholder
-    github: "https://github.com/#",
-    linkedin: "https://linkedin.com/in/#",
+    email: "shreyaanshtiwari@gmail.com",
+    github: "https://github.com/shreyaanshtiwari",
+    linkedin: "https://linkedin.com/in/shreyansh-kumar-tiwari",
   },
   footer: {
     name: "Shreyansh Kumar Tiwari",

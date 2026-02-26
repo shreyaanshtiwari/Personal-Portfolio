@@ -48,28 +48,30 @@ export const ContactSection = () => {
 
     return (
         <Section id="contact" title="Get In Touch" className="bg-slate-950">
-            <div className="grid md:grid-cols-2 gap-12 w-full max-w-5xl">
-                <div>
-                    <h3 className="text-2xl font-bold text-white mb-4">Let's Talk</h3>
-                    <p className="text-slate-400 leading-relaxed mb-8">
+            <div className="grid md:grid-cols-2 gap-10 md:gap-12 w-full max-w-5xl">
+                {/* Left Side: Contact Information */}
+                <div className="flex flex-col justify-center">
+                    <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">Let's Talk</h3>
+                    <p className="text-slate-400 text-sm sm:text-base leading-relaxed mb-8 max-w-md">
                         I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
                     </p>
-                    <div className="flex items-center gap-4 text-slate-300">
-                        <div className="w-12 h-12 bg-slate-900 rounded-full flex items-center justify-center text-blue-500">
+                    <div className="flex items-center gap-4 text-slate-300 bg-slate-900/40 p-4 rounded-xl border border-slate-800/80 max-w-md w-full">
+                        <div className="w-12 h-12 shrink-0 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-500 border border-blue-500/20">
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                             </svg>
                         </div>
-                        <div>
-                            <p className="text-sm text-slate-500 font-medium">Email</p>
-                            <a href={`mailto:${email}`} className="text-lg hover:text-blue-400 transition-colors font-semibold">
+                        <div className="overflow-hidden">
+                            <p className="text-xs text-slate-500 font-medium uppercase tracking-wider mb-1">Email</p>
+                            <a href={`mailto:${email}`} className="text-sm sm:text-base hover:text-blue-400 transition-colors font-semibold truncate block w-full">
                                 {email}
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-6 bg-slate-900/50 p-8 rounded-2xl border border-slate-800">
+                {/* Right Side: Contact Form */}
+                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6 bg-slate-900/50 p-6 sm:p-8 rounded-2xl border border-slate-800 shadow-xl shadow-black/20">
                     <div>
                         <label htmlFor="name" className="block text-sm font-medium text-slate-400 mb-2">Name</label>
                         <input

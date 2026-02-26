@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import { Section } from './Section';
 import { Button } from './Button';
 import { portfolioData } from '@/data/content';
@@ -14,13 +15,27 @@ export const ContactSection = () => {
         setStatus('submitting');
 
         try {
-            const response = await fetch('/api/contact', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData),
-            });
+            // Configuration for EmailJS
+            // You will need to replace these with your actual EmailJS IDs from emailjs.com
+            const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID';
+            const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID';
+            const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY';
 
-            if (response.ok) {
+            const templateParams = {
+                from_name: formData.name,
+                from_email: formData.email,
+                message: formData.message,
+                to_name: portfolioData.footer.name,
+            };
+
+            const response = await emailjs.send(
+                serviceId,
+                templateId,
+                templateParams,
+                publicKey
+            );
+
+            if (response.status === 200) {
                 setStatus('success');
                 setFormData({ name: '', email: '', message: '' });
             } else {

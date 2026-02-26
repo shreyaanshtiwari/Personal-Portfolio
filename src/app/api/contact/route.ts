@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import emailjs from '@emailjs/nodejs';
 
 export async function POST(request: Request) {
     try {
@@ -12,15 +13,32 @@ export async function POST(request: Request) {
             );
         }
 
-        // Mock Backend Logging
-        console.log('--- New Contact Form Submission ---');
-        console.log(`Name: ${name}`);
-        console.log(`Email: ${email}`);
-        console.log(`Message: ${message}`);
-        console.log('-----------------------------------');
+        const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '';
+        const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '';
+        const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '';
+        const privateKey = process.env.EMAILJS_PRIVATE_KEY || ''; // Optional but recommended for server
 
-        // Future email integration setup can go here
-        // e.g. Resend, SendGrid, Nodemailer
+        if (!serviceId || !templateId || !publicKey) {
+            console.error("EmailJS credentials missing from environment.");
+            return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
+        }
+
+        const templateParams = {
+            from_name: name,
+            from_email: email,
+            message: message,
+            to_name: "Portfolio Admin", // Or dynamically get portfolio footer name
+        };
+
+        const response = await emailjs.send(
+            serviceId,
+            templateId,
+            templateParams,
+            {
+                publicKey: publicKey,
+                privateKey: privateKey, // Optional
+            }
+        );
 
         return NextResponse.json(
             { success: true, message: 'Message received successfully!' },

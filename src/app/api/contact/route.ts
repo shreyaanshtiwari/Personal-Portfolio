@@ -44,10 +44,15 @@ export async function POST(request: Request) {
             { success: true, message: 'Message received successfully!' },
             { status: 200 }
         );
-    } catch (error) {
-        console.error('Contact API Error:', error);
+    } catch (error: any) {
+        console.error('Contact API Error Detailed:', {
+            message: error?.message || 'Unknown error',
+            name: error?.name,
+            response: error?.response?.text || error?.text,
+            stack: error?.stack
+        });
         return NextResponse.json(
-            { error: 'Internal Server Error' },
+            { error: 'Internal Server Error: ' + (error?.message || 'Failed to send') },
             { status: 500 }
         );
     }

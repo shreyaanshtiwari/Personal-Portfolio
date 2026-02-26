@@ -15,15 +15,24 @@ export const AboutSection = () => {
                     </p>
                 </div>
 
-                <div className="relative">
-                    <div className="aspect-square rounded-2xl overflow-hidden bg-slate-800 border border-slate-700 relative z-10">
-                        {/* Placeholder for profile image */}
-                        <div className="absolute inset-0 flex items-center justify-center text-slate-500 font-medium">
-                            Profile Image Placeholder
-                        </div>
+                <div className="grid grid-cols-2 gap-4">
+                    {/* Decorative Highlight Cards */}
+                    <div className="bg-slate-800/80 border border-slate-700 p-6 rounded-2xl flex flex-col justify-center items-center text-center hover:border-blue-500/50 transition-colors shadow-lg shadow-blue-900/10">
+                        <span className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-br from-blue-400 to-blue-600 mb-2">2+</span>
+                        <span className="text-sm text-slate-400 font-medium uppercase tracking-wider">Years of Coding</span>
                     </div>
-                    {/* Decorative offset border */}
-                    <div className="absolute inset-0 border-2 border-blue-500 rounded-2xl translate-x-4 translate-y-4 -z-0"></div>
+                    <div className="bg-slate-800/80 border border-slate-700 p-6 rounded-2xl flex flex-col justify-center items-center text-center hover:border-emerald-500/50 transition-colors shadow-lg shadow-emerald-900/10 mt-6 lg:mt-8">
+                        <span className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-br from-emerald-400 to-emerald-600 mb-2">10+</span>
+                        <span className="text-sm text-slate-400 font-medium uppercase tracking-wider">Projects Built</span>
+                    </div>
+                    <div className="bg-slate-800/80 border border-slate-700 p-6 rounded-2xl flex flex-col justify-center items-center text-center hover:border-purple-500/50 transition-colors shadow-lg shadow-purple-900/10 -mt-6 lg:-mt-8">
+                        <span className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-br from-purple-400 to-purple-600 mb-2">100%</span>
+                        <span className="text-sm text-slate-400 font-medium uppercase tracking-wider">Commitment</span>
+                    </div>
+                    <div className="bg-slate-800/80 border border-slate-700 p-6 rounded-2xl flex flex-col justify-center items-center text-center hover:border-blue-500/50 transition-colors shadow-lg shadow-blue-900/10">
+                        <span className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-br from-indigo-400 to-blue-600 mb-2">∞</span>
+                        <span className="text-sm text-slate-400 font-medium uppercase tracking-wider">Learning</span>
+                    </div>
                 </div>
             </div>
         </Section>

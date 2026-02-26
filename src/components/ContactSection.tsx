@@ -16,10 +16,9 @@ export const ContactSection = () => {
 
         try {
             // Configuration for EmailJS
-            // You will need to replace these with your actual EmailJS IDs from emailjs.com
-            const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID';
-            const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID';
-            const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY';
+            const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '';
+            const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '';
+            const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '';
 
             const templateParams = {
                 from_name: formData.name,

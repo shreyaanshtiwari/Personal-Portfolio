@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import Image from 'next/image';
 import { Section } from './Section';
 import { Button } from './Button';
 import { SocialLinks } from './SocialLinks';
@@ -13,34 +14,54 @@ export const HeroSection = () => {
     };
 
     return (
-        <Section id="hero" className="bg-slate-950 text-white min-h-screen relative overflow-hidden">
-            {/* Background decorations */}
-            <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-                <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-blue-900/20 blur-[100px]"></div>
-                <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-purple-900/20 blur-[100px]"></div>
-            </div>
+        <Section id="hero" className="min-h-[90vh] flex flex-col justify-center">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-12 w-full max-w-5xl">
+                {/* Text Content */}
+                <div className="flex-1 order-2 md:order-1 text-center md:text-left">
+                    <p className="text-blue-500 font-medium tracking-wide uppercase mb-4">{subtitle}</p>
+                    <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
+                        {heading.split(' ').map((word, i) => (
+                            <span key={i} className={i >= 3 ? 'text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400' : ''}>
+                                {word}{' '}
+                            </span>
+                        ))}
+                    </h1>
+                    <p className="text-lg md:text-xl text-slate-400 mb-8 max-w-2xl leading-relaxed mx-auto md:mx-0">
+                        {introduction}
+                    </p>
 
-            <div className="relative z-10 flex flex-col items-start max-w-3xl">
-                <h2 className="text-blue-500 font-medium tracking-wide mb-4">{subtitle}</h2>
-                <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
-                    {heading}
-                </h1>
-                <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl leading-relaxed">
-                    {introduction}
-                </p>
+                    <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mb-12">
+                        <Button onClick={handleScrollToProjects}>
+                            View Projects
+                        </Button>
+                        <Button variant="outline" asChild>
+                            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">Download Resume</a>
+                        </Button>
+                    </div>
 
-                <div className="flex flex-col sm:flex-row items-center gap-4 mb-12">
-                    <Button onClick={handleScrollToProjects}>
-                        View Projects
-                    </Button>
-                    <Button variant="outline" asChild>
-                        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-                            Download Resume
-                        </a>
-                    </Button>
+                    <div className="flex items-center justify-center md:justify-start gap-4">
+                        <span className="text-slate-500 font-medium">Connect with me:</span>
+                        <SocialLinks />
+                    </div>
                 </div>
 
-                <SocialLinks />
+                {/* Profile Image */}
+                <div className="flex-1 order-1 md:order-2 flex justify-center md:justify-end">
+                    <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full bg-slate-800 p-2 border-4 border-slate-800 shadow-2xl">
+                        <Image
+                            src="/Shreyansh Tiwari.png"
+                            alt="Shreyansh Kumar Tiwari"
+                            fill
+                            priority
+                            className="object-cover rounded-full"
+                            sizes="(max-width: 768px) 256px, 320px"
+                        />
+                        <div className="absolute inset-0 rounded-full border border-slate-700/50"></div>
+
+                        {/* Decorative glow behind image */}
+                        <div className="absolute -inset-4 bg-gradient-to-tr from-blue-500/20 to-emerald-500/20 rounded-full blur-2xl -z-10"></div>
+                    </div>
+                </div>
             </div>
         </Section>
     );

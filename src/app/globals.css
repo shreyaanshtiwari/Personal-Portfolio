@@ -1,26 +1,199 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-obsidian: #0C0709;
+  --bg-surface: #150D11;
+  --bg-surface-elevated: #1F1218;
+  --bg-surface-glass: rgba(21, 13, 17, 0.75);
+  
+  --maroon: #5A0F1C;
+  --maroon-glow: #7C1729;
+  --maroon-deep: #380811;
+  
+  --gold: #D4AF37;
+  --gold-champagne: #F3E5AB;
+  --gold-light: #ECC865;
+  --gold-muted: rgba(212, 175, 55, 0.45);
+  
+  --warm-beige: #F5E6D3;
+  --off-white: #FAF7F2;
+  --muted: #8E7B74;
+  --muted-dark: #4A3B42;
+  
+  --border-subtle: rgba(245, 230, 211, 0.08);
+  --border-maroon: rgba(90, 15, 28, 0.5);
+  --border-gold: rgba(212, 175, 55, 0.25);
+  --border-gold-bright: rgba(212, 175, 55, 0.6);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--bg-obsidian);
+  --color-foreground: var(--off-white);
+  --color-obsidian: var(--bg-obsidian);
+  --color-surface: var(--bg-surface);
+  --color-surface-elevated: var(--bg-surface-elevated);
+  --color-maroon: var(--maroon);
+  --color-maroon-glow: var(--maroon-glow);
+  --color-maroon-deep: var(--maroon-deep);
+  --color-gold: var(--gold);
+  --color-gold-champagne: var(--gold-champagne);
+  --color-gold-light: var(--gold-light);
+  --color-beige: var(--warm-beige);
+  --color-offwhite: var(--off-white);
+  --color-muted: var(--muted);
+  --color-muted-dark: var(--muted-dark);
+  
+  --font-serif: var(--font-playfair), Georgia, serif;
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background-color: #0C0709;
+  color: #FAF7F2;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Lenis smooth scrolling standard classes */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #0C0709;
+  color: #FAF7F2;
+  overflow-x: hidden;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+}
+
+::selection {
+  background-color: #5A0F1C;
+  color: #F3E5AB;
+}
+
+/* Custom Editorial Luxury Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0C0709;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #251219;
+  border-radius: 3px;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5A0F1C;
+  border-color: rgba(212, 175, 55, 0.4);
+}
+
+/* Editorial & Display Typography */
+.font-editorial {
+  font-family: var(--font-playfair), Georgia, serif;
+}
+
+.font-tech {
+  font-family: var(--font-geist-mono), monospace;
+}
+
+/* Luxury Glassmorphism Utilities */
+.glass-panel {
+  background: rgba(21, 13, 17, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 175, 55, 0.14);
+}
+
+.glass-panel-elevated {
+  background: rgba(31, 18, 24, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(90, 15, 28, 0.25);
+}
+
+.glass-card {
+  background: rgba(18, 11, 15, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(245, 230, 211, 0.08);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(212, 175, 55, 0.35);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(212, 175, 55, 0.12);
+}
+
+/* Ambient Glow Effects */
+.glow-maroon {
+  background: radial-gradient(circle, rgba(90, 15, 28, 0.3) 0%, rgba(12, 7, 9, 0) 70%);
+}
+
+.glow-gold {
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.18) 0%, rgba(12, 7, 9, 0) 70%);
+}
+
+.glow-maroon-intense {
+  background: radial-gradient(circle, rgba(124, 23, 41, 0.45) 0%, rgba(90, 15, 28, 0.15) 45%, rgba(12, 7, 9, 0) 70%);
+}
+
+/* Fine Gold Hairline Accents */
+.line-gold {
+  background: linear-gradient(90deg, rgba(212, 175, 55, 0) 0%, #D4AF37 50%, rgba(212, 175, 55, 0) 100%);
+}
+
+.line-gold-v {
+  background: linear-gradient(180deg, rgba(212, 175, 55, 0) 0%, #D4AF37 50%, rgba(212, 175, 55, 0) 100%);
+}
+
+/* Indian-Inspired Sacred Geometric Technical Lattice Pattern */
+.bg-tech-lattice {
+  background-image: 
+    radial-gradient(rgba(212, 175, 55, 0.08) 1px, transparent 1px),
+    radial-gradient(rgba(90, 15, 28, 0.15) 1px, transparent 1px);
+  background-size: 32px 32px, 64px 64px;
+  background-position: 0 0, 16px 16px;
+}
+
+/* Smooth Pulse Animation */
+@keyframes subtle-pulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+.animate-subtle-pulse {
+  animation: subtle-pulse 4s ease-in-out infinite;
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

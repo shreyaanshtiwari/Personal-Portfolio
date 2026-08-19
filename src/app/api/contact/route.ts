@@ -27,16 +27,16 @@ export async function POST(request: Request) {
             from_name: name,
             from_email: email,
             message: message,
-            to_name: "Portfolio Admin", // Or dynamically get portfolio footer name
+            to_name: "Portfolio Admin",
         };
 
-        const response = await emailjs.send(
+        await emailjs.send(
             serviceId,
             templateId,
             templateParams,
             {
                 publicKey: publicKey,
-                privateKey: privateKey, // Optional
+                privateKey: privateKey,
             }
         );
 
@@ -44,15 +44,11 @@ export async function POST(request: Request) {
             { success: true, message: 'Message received successfully!' },
             { status: 200 }
         );
-    } catch (error: any) {
-        console.error('Contact API Error Detailed:', {
-            message: error?.message || 'Unknown error',
-            name: error?.name,
-            response: error?.response?.text || error?.text,
-            stack: error?.stack
-        });
+    } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : 'Failed to send';
+        console.error('Contact API Error:', error);
         return NextResponse.json(
-            { error: 'Internal Server Error: ' + (error?.message || 'Failed to send') },
+            { error: 'Internal Server Error: ' + errorMessage },
             { status: 500 }
         );
     }

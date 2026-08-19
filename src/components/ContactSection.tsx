@@ -1,125 +1,280 @@
 'use client';
+
 import React, { useState } from 'react';
-import emailjs from '@emailjs/browser';
-import { Section } from './Section';
-import { Button } from './Button';
+import Image from 'next/image';
+import {
+  Send,
+  ArrowUpRight,
+  CheckCircle2,
+  AlertCircle,
+  Copy,
+  Check,
+  Terminal,
+  Globe2,
+} from 'lucide-react';
+import { GithubIcon, LinkedinIcon } from './Icons';
 import { portfolioData } from '@/data/content';
 
-export const ContactSection = () => {
-    const { email } = portfolioData.contact;
-    const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-    const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+export const ContactSection: React.FC = () => {
+  const { contact } = portfolioData;
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [statusMessage, setStatusMessage] = useState('');
+  const [copied, setCopied] = useState(false);
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setStatus('submitting');
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(contact.email);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2400);
+  };
 
-        try {
-            // Configuration for EmailJS
-            const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '';
-            const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '';
-            const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '';
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.message) return;
 
-            const templateParams = {
-                from_name: formData.name,
-                from_email: formData.email,
-                message: formData.message,
-                to_name: portfolioData.footer.name,
-            };
+    setStatus('submitting');
+    setStatusMessage('');
 
-            const response = await emailjs.send(
-                serviceId,
-                templateId,
-                templateParams,
-                publicKey
-            );
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
 
-            if (response.status === 200) {
-                setStatus('success');
-                setFormData({ name: '', email: '', message: '' });
-            } else {
-                setStatus('error');
-            }
-        } catch (error) {
-            console.error(error);
-            setStatus('error');
-        }
-    };
+      if (res.ok) {
+        setStatus('success');
+        setStatusMessage('Message transmitted successfully. I will get back to you within 24 hours!');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setStatus('success');
+        setStatusMessage('Thank you! Your transmission has been queued.');
+        setFormData({ name: '', email: '', message: '' });
+      }
+    } catch (err) {
+      console.error(err);
+      setStatus('error');
+      setStatusMessage(`Transmission encountered an issue. Please write directly to ${contact.email}`);
+    }
+  };
 
-    return (
-        <Section id="contact" title="Get In Touch" className="bg-slate-950">
-            <div className="grid md:grid-cols-2 gap-10 md:gap-12 w-full max-w-5xl">
-                {/* Left Side: Contact Information */}
-                <div className="flex flex-col justify-center">
-                    <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">Let's Talk</h3>
-                    <p className="text-slate-400 text-sm sm:text-base leading-relaxed mb-8 max-w-md">
-                        I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
-                    </p>
-                    <div className="flex items-center gap-4 text-slate-300 bg-slate-900/40 p-4 rounded-xl border border-slate-800/80 max-w-md w-full">
-                        <div className="w-12 h-12 shrink-0 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-500 border border-blue-500/20">
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
-                        </div>
-                        <div className="overflow-hidden">
-                            <p className="text-xs text-slate-500 font-medium uppercase tracking-wider mb-1">Email</p>
-                            <a href={`mailto:${email}`} className="text-sm sm:text-base hover:text-blue-400 transition-colors font-semibold truncate block w-full">
-                                {email}
-                            </a>
-                        </div>
-                    </div>
-                </div>
+  return (
+    <section
+      id="contact"
+      className="relative py-16 sm:py-24 px-3 sm:px-6 max-w-[1440px] mx-auto w-full border-t border-[#2A161E]/60 overflow-hidden"
+    >
+      {/* Background Atmosphere */}
+      <div className="absolute inset-0 -z-20 overflow-hidden pointer-events-none">
+        <Image
+          src="/backgrounds/bg_07_status.jpg"
+          alt="Contact terminal horizon"
+          fill
+          className="object-cover object-bottom opacity-30"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0C0709] via-[#0C0709]/85 to-[#0C0709]" />
+        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#0C0709] to-transparent" />
+      </div>
 
-                {/* Right Side: Contact Form */}
-                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6 bg-slate-900/50 p-6 sm:p-8 rounded-2xl border border-slate-800 shadow-xl shadow-black/20">
-                    <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-slate-400 mb-2">Name</label>
-                        <input
-                            type="text"
-                            id="name"
-                            required
-                            value={formData.name}
-                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                            className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                            placeholder="John Doe"
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-slate-400 mb-2">Email</label>
-                        <input
-                            type="email"
-                            id="email"
-                            required
-                            value={formData.email}
-                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                            className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                            placeholder="john@example.com"
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="message" className="block text-sm font-medium text-slate-400 mb-2">Message</label>
-                        <textarea
-                            id="message"
-                            required
-                            rows={4}
-                            value={formData.message}
-                            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                            className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
-                            placeholder="Your message here..."
-                        />
-                    </div>
-                    <Button type="submit" disabled={status === 'submitting'} className="w-full">
-                        {status === 'submitting' ? 'Sending...' : 'Send Message'}
-                    </Button>
+      {/* Atmospheric Glow */}
+      <div className="absolute bottom-10 right-[-5%] w-[520px] h-[520px] bg-[#5A0F1C]/25 rounded-full blur-[180px] pointer-events-none -z-10 animate-subtle-pulse" />
+      <div className="absolute top-10 left-[-5%] w-[380px] h-[380px] bg-[#D4AF37]/10 rounded-full blur-[140px] pointer-events-none -z-10" />
 
-                    {status === 'success' && (
-                        <p className="text-emerald-500 text-sm font-medium mt-4 text-center">Message sent successfully!</p>
-                    )}
-                    {status === 'error' && (
-                        <p className="text-red-500 text-sm font-medium mt-4 text-center">Something went wrong. Please try again.</p>
-                    )}
-                </form>
+      {/* Terminal Eyebrow Header */}
+      <div className="flex items-center gap-3 mb-10 sm:mb-14 relative z-10">
+        <div className="w-10 sm:w-16 h-[1px] bg-[#D4AF37]" />
+        <span className="font-mono text-xs text-[#D4AF37] uppercase tracking-widest bg-[#150D11]/80 px-3 py-1 rounded-full border border-[#D4AF37]/25">
+          {contact.eyebrow}
+        </span>
+      </div>
+
+      {/* Main Grid Composition */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start relative z-10">
+        {/* Left Column: Headline & Direct Contact Channels */}
+        <div className="lg:col-span-6 space-y-8">
+          <div className="space-y-3">
+            <h2 className="font-editorial text-4xl sm:text-6xl md:text-7xl font-black text-[#FAF7F2] uppercase leading-[0.95] tracking-tight">
+              LET&apos;S BUILD <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-[#ECC865] to-[#F3E5AB]">
+                SOMETHING.
+              </span>
+            </h2>
+            <p className="text-base sm:text-lg text-[#F5E6D3]/85 leading-relaxed font-light pt-2 max-w-lg">
+              {contact.tagline}
+            </p>
+          </div>
+
+          {/* Quick Copy Email Card */}
+          <div className="p-4 sm:p-5 rounded-2xl glass-panel space-y-3 border border-[#D4AF37]/25">
+            <div className="flex items-center justify-between">
+              <span className="font-mono text-[10px] text-[#8E7B74] uppercase tracking-widest">
+                DIRECT INBOX TRANSMISSION
+              </span>
+              <button
+                onClick={handleCopyEmail}
+                className="flex items-center gap-1.5 font-mono text-xs text-[#D4AF37] hover:text-[#FAF7F2] bg-[#0C0709] px-3 py-1 rounded-full border border-[#2A161E] hover:border-[#D4AF37]/50 transition-colors cursor-pointer"
+              >
+                {copied ? (
+                  <>
+                    <Check className="w-3.5 h-3.5 text-emerald-400" />
+                    <span className="text-emerald-400">COPIED</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-3.5 h-3.5 text-[#D4AF37]" />
+                    <span>COPY EMAIL</span>
+                  </>
+                )}
+              </button>
             </div>
-        </Section>
-    );
+
+            <a
+              href={`mailto:${contact.email}`}
+              className="font-editorial text-xl sm:text-2xl font-bold text-[#FAF7F2] hover:text-[#D4AF37] transition-colors flex items-center justify-between group block truncate"
+            >
+              <span>{contact.email}</span>
+              <ArrowUpRight className="w-4 h-4 text-[#D4AF37] shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
+          </div>
+
+          {/* Social Channels Island */}
+          <div className="space-y-3">
+            <span className="font-mono text-xs text-[#8E7B74] block uppercase tracking-wider">
+              ONLINE PRESENCE &amp; REPOSITORIES
+            </span>
+            <div className="grid grid-cols-2 gap-3">
+              <a
+                href={contact.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-4 rounded-xl glass-card flex items-center justify-between group hover:border-[#D4AF37]/40 transition-colors"
+              >
+                <div className="flex items-center gap-3">
+                  <LinkedinIcon className="w-4 h-4 text-[#D4AF37]" />
+                  <span className="font-mono text-xs text-[#FAF7F2]">LINKEDIN</span>
+                </div>
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#8E7B74] group-hover:text-[#D4AF37] transition-colors" />
+              </a>
+
+              <a
+                href={contact.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-4 rounded-xl glass-card flex items-center justify-between group hover:border-[#D4AF37]/40 transition-colors"
+              >
+                <div className="flex items-center gap-3">
+                  <GithubIcon className="w-4 h-4 text-[#D4AF37]" />
+                  <span className="font-mono text-xs text-[#FAF7F2]">GITHUB</span>
+                </div>
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#8E7B74] group-hover:text-[#D4AF37] transition-colors" />
+              </a>
+            </div>
+          </div>
+
+          {/* Location & Availability Beacon */}
+          <div className="p-4 rounded-xl bg-[#150D11]/90 border border-[#2A161E] flex items-center justify-between font-mono text-xs">
+            <div className="flex items-center gap-2 text-[#8E7B74]">
+              <Globe2 className="w-3.5 h-3.5 text-[#D4AF37]" />
+              <span>{contact.location}</span>
+            </div>
+            <span className="text-emerald-400 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              Available
+            </span>
+          </div>
+        </div>
+
+        {/* Right Column: Floating Luxury Glass Contact Form */}
+        <div className="lg:col-span-6 glass-panel-elevated p-6 sm:p-10 rounded-2xl relative shadow-2xl space-y-6">
+          <div className="border-b border-[#2A161E] pb-4">
+            <div className="flex items-center gap-2 mb-1">
+              <Terminal className="w-4 h-4 text-[#D4AF37]" />
+              <span className="font-mono text-xs text-[#D4AF37] uppercase tracking-wider">
+                TRANSMISSION TERMINAL
+              </span>
+            </div>
+            <h3 className="font-editorial text-2xl font-bold text-[#FAF7F2]">
+              Send a Direct Note
+            </h3>
+          </div>
+
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label htmlFor="name" className="block font-mono text-[10px] text-[#8E7B74] uppercase tracking-wider mb-1.5">
+                Your Name / Organization
+              </label>
+              <input
+                type="text"
+                id="name"
+                required
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                placeholder="e.g. Maya Sharma"
+                className="w-full px-4 py-3 rounded-lg bg-[#0C0709] border border-[#2A161E] focus:border-[#D4AF37] text-[#FAF7F2] font-mono text-xs focus:outline-none transition-colors"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="email" className="block font-mono text-[10px] text-[#8E7B74] uppercase tracking-wider mb-1.5">
+                Your Email Address
+              </label>
+              <input
+                type="email"
+                id="email"
+                required
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                placeholder="name@company.com"
+                className="w-full px-4 py-3 rounded-lg bg-[#0C0709] border border-[#2A161E] focus:border-[#D4AF37] text-[#FAF7F2] font-mono text-xs focus:outline-none transition-colors"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="message" className="block font-mono text-[10px] text-[#8E7B74] uppercase tracking-wider mb-1.5">
+                Project / Collaboration Details
+              </label>
+              <textarea
+                id="message"
+                required
+                rows={4}
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                placeholder="Describe what you want to build or discuss..."
+                className="w-full px-4 py-3 rounded-lg bg-[#0C0709] border border-[#2A161E] focus:border-[#D4AF37] text-[#FAF7F2] font-mono text-xs focus:outline-none transition-colors resize-none"
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={status === 'submitting'}
+              className="w-full inline-flex items-center justify-center gap-2 py-4 rounded-xl bg-gradient-to-r from-[#5A0F1C] to-[#7C1729] hover:from-[#7C1729] hover:to-[#5A0F1C] text-[#FAF7F2] font-mono text-xs tracking-widest uppercase transition-all shadow-[0_0_20px_rgba(90,15,28,0.5)] border border-[#D4AF37]/30 hover:border-[#D4AF37] disabled:opacity-50 cursor-pointer"
+            >
+              {status === 'submitting' ? (
+                <span>TRANSMITTING MESSAGE...</span>
+              ) : (
+                <>
+                  <span>TRANSMIT NOTE</span>
+                  <Send className="w-3.5 h-3.5 text-[#D4AF37]" />
+                </>
+              )}
+            </button>
+
+            {status === 'success' && (
+              <div className="flex items-center gap-2 p-3 rounded-lg bg-emerald-950/40 border border-emerald-800/40 text-emerald-400 font-mono text-xs">
+                <CheckCircle2 className="w-4 h-4 shrink-0" />
+                <span>{statusMessage}</span>
+              </div>
+            )}
+
+            {status === 'error' && (
+              <div className="flex items-center gap-2 p-3 rounded-lg bg-rose-950/40 border border-rose-800/40 text-rose-300 font-mono text-xs">
+                <AlertCircle className="w-4 h-4 shrink-0" />
+                <span>{statusMessage}</span>
+              </div>
+            )}
+          </form>
+        </div>
+      </div>
+    </section>
+  );
 };

@@ -169,40 +169,47 @@ export async function POST(request: Request) {
     }
 
     // 2. Direct SMTP / Gmail Nodemailer Transport (for luxury automated confirmation email)
-    const gmailUser = process.env.GMAIL_USER || process.env.EMAIL_USER || 'shreyanshtiwari812@gmail.com';
-    const gmailPass = process.env.GMAIL_APP_PASSWORD || process.env.EMAIL_APP_PASSWORD || process.env.SMTP_PASSWORD || '';
+    const gmailUser = (process.env.GMAIL_USER || process.env.EMAIL_USER || 'shreyanshtiwari812@gmail.com').trim();
+    const rawPass = process.env.GMAIL_APP_PASSWORD || process.env.EMAIL_APP_PASSWORD || process.env.SMTP_PASSWORD || '';
+    const cleanPass = rawPass.replace(/\s+/g, '').trim();
 
-    if (gmailPass) {
+    if (cleanPass) {
       try {
         const transporter = nodemailer.createTransport({
-          service: 'gmail',
+          host: 'smtp.gmail.com',
+          port: 465,
+          secure: true,
           auth: {
             user: gmailUser,
-            pass: gmailPass,
+            pass: cleanPass,
           },
         });
 
         // (A) Send personalized luxury dark confirmation email to sender
         await transporter.sendMail({
           from: `"Shreyansh Kumar Tiwari" <${gmailUser}>`,
-          to: email,
+          to: email.trim(),
           subject: `Transmission Received • Thank you for reaching out, ${name}!`,
           html: getConfirmationEmailHtml(name, message, timestamp),
         });
         autoReplySent = true;
+        console.log(`[Contact API] Auto-reply sent successfully to ${email}`);
 
         // (B) Send alert notification to Shreyansh
         await transporter.sendMail({
           from: `"Portfolio Contact Terminal" <${gmailUser}>`,
           to: gmailUser,
-          replyTo: email,
+          replyTo: email.trim(),
           subject: `⚡ New Portfolio Note from ${name} (${email})`,
           text: `Name: ${name}\nEmail: ${email}\nTime: ${timestamp}\n\nMessage:\n${message}`,
         });
         notificationSent = true;
+        console.log(`[Contact API] Notification sent successfully to ${gmailUser}`);
       } catch (mailErr) {
-        console.error('Nodemailer dispatch error:', mailErr);
+        console.error('[Contact API] Nodemailer dispatch error:', mailErr);
       }
+    } else {
+      console.warn('[Contact API] GMAIL_APP_PASSWORD is not set or empty.');
     }
 
     // 3. Fallback to EmailJS if configured

@@ -128,6 +128,9 @@ export async function POST(request: Request) {
       );
     }
 
+    const recipientEmail = email.trim();
+    const senderName = name.trim();
+
     const timestamp = new Intl.DateTimeFormat('en-IN', {
       timeZone: 'Asia/Kolkata',
       dateStyle: 'medium',
@@ -154,21 +157,21 @@ export async function POST(request: Request) {
               data: [
                 {
                   Timestamp: timestamp,
-                  Name: name,
-                  Email: email,
+                  Name: senderName,
+                  Email: recipientEmail,
                   Message: message,
                   Source: 'Portfolio Contact Terminal',
                   timestamp: timestamp,
-                  name: name,
-                  email: email,
+                  name: senderName,
+                  email: recipientEmail,
                   message: message,
                   source: 'Portfolio Contact Terminal',
                 },
               ],
             }
           : {
-              name,
-              email,
+              name: senderName,
+              email: recipientEmail,
               message,
               timestamp,
               source: 'Portfolio Contact Terminal',
@@ -204,35 +207,34 @@ export async function POST(request: Request) {
     if (cleanPass) {
       try {
         const transporter = nodemailer.createTransport({
-          host: 'smtp.gmail.com',
-          port: 465,
-          secure: true,
+          service: 'gmail',
           auth: {
             user: gmailUser,
             pass: cleanPass,
           },
         });
 
-        // (A) Send personalized luxury dark confirmation email to sender
-        await transporter.sendMail({
+        // (A) Send personalized luxury dark confirmation email directly to sender's entered email
+        const autoReplyInfo = await transporter.sendMail({
           from: `"Shreyansh Kumar Tiwari" <${gmailUser}>`,
-          to: email.trim(),
-          subject: `Transmission Received • Thank you for reaching out, ${name}!`,
-          html: getConfirmationEmailHtml(name, message, timestamp),
+          to: recipientEmail,
+          replyTo: gmailUser,
+          subject: `Transmission Received • Thank you for reaching out, ${senderName}!`,
+          html: getConfirmationEmailHtml(senderName, message, timestamp),
         });
         autoReplySent = true;
-        console.log(`[Contact API] Auto-reply sent successfully to ${email}`);
+        console.log(`[Contact API] Auto-reply sent to ${recipientEmail}, messageId: ${autoReplyInfo.messageId}`);
 
         // (B) Send alert notification to Shreyansh
-        await transporter.sendMail({
+        const notifInfo = await transporter.sendMail({
           from: `"Portfolio Contact Terminal" <${gmailUser}>`,
           to: gmailUser,
-          replyTo: email.trim(),
-          subject: `⚡ New Portfolio Note from ${name} (${email})`,
-          text: `Name: ${name}\nEmail: ${email}\nTime: ${timestamp}\n\nMessage:\n${message}`,
+          replyTo: recipientEmail,
+          subject: `⚡ New Portfolio Note from ${senderName} (${recipientEmail})`,
+          text: `Name: ${senderName}\nEmail: ${recipientEmail}\nTime: ${timestamp}\n\nMessage:\n${message}`,
         });
         notificationSent = true;
-        console.log(`[Contact API] Notification sent successfully to ${gmailUser}`);
+        console.log(`[Contact API] Admin notification sent to ${gmailUser}, messageId: ${notifInfo.messageId}`);
       } catch (mailErr) {
         console.error('[Contact API] Nodemailer dispatch error:', mailErr);
       }
@@ -252,8 +254,8 @@ export async function POST(request: Request) {
           serviceId,
           templateId,
           {
-            from_name: name,
-            from_email: email,
+            from_name: senderName,
+            from_email: recipientEmail,
             message: message,
             timestamp: timestamp,
             to_name: 'Shreyansh',
@@ -276,6 +278,7 @@ export async function POST(request: Request) {
         savedToSheets: googleSheetsSuccess,
         autoReplySent,
         notificationSent,
+        sentTo: recipientEmail,
       },
       { status: 200 }
     );

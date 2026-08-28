@@ -12,6 +12,11 @@ import {
   Check,
   ShieldCheck,
   ChevronDown,
+  FileSpreadsheet,
+  MailCheck,
+  FormInput,
+  Send,
+  Zap,
 } from 'lucide-react';
 import { portfolioData } from '@/data/content';
 import { InstagramIcon } from './Icons';
@@ -85,10 +90,10 @@ export const SwaddeshPrelaunchSection: React.FC = () => {
             {prelaunch.description}
           </p>
 
-          {/* Key Pre-Launch Pillars */}
+          {/* Key Pre-Launch Technical Highlights */}
           <div className="space-y-2.5 pt-2">
             <span className="font-mono text-[10px] text-[#8E7B74] uppercase tracking-widest block">
-              PRE-LAUNCH HIGHLIGHTS
+              ENGINEERED CAPABILITIES &amp; INTEGRATIONS
             </span>
             <div className="grid grid-cols-1 gap-2">
               {prelaunch.highlights.map((item, idx) => (
@@ -129,8 +134,8 @@ export const SwaddeshPrelaunchSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Right Column: Interactive Browser Mockup Window */}
-        <div className="lg:col-span-7">
+        {/* Right Column: Interactive Browser Mockup Window & Real-time Flow */}
+        <div className="lg:col-span-7 space-y-6">
           <div className="rounded-2xl overflow-hidden glass-panel-elevated border border-[#D4AF37]/35 shadow-2xl space-y-0">
             {/* Browser Window Chrome Top Header */}
             <div className="bg-[#150D11] px-4 py-3 border-b border-[#2A161E] flex items-center justify-between gap-4">
@@ -189,7 +194,7 @@ export const SwaddeshPrelaunchSection: React.FC = () => {
                   <div className="flex items-center gap-2 mb-1.5">
                     <Sparkles className="w-4 h-4 text-[#D4AF37]" />
                     <span className="font-mono text-[10px] text-[#D4AF37] tracking-widest uppercase">
-                      OFFICIAL PRE-LAUNCH PORTAL
+                      BUILT WITH NEXT.JS &bull; LIVE AT SWADDESH.IN
                     </span>
                   </div>
                   <h3 className="font-editorial text-2xl sm:text-3xl font-bold text-[#FAF7F2]">
@@ -211,8 +216,65 @@ export const SwaddeshPrelaunchSection: React.FC = () => {
                 </a>
               </div>
 
+              {/* Real-time 3-Step Integration Flow Pipeline */}
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-[10px] text-[#D4AF37] uppercase tracking-wider font-semibold flex items-center gap-1.5">
+                    <Zap className="w-3.5 h-3.5 text-[#D4AF37]" />
+                    PRE-LAUNCH FORM &bull; DATA &bull; EMAIL AUTOMATION
+                  </span>
+                  <span className="font-mono text-[10px] text-emerald-400">
+                    Live Pipeline
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  {/* Step 1: Interest Form */}
+                  <div className="p-3.5 rounded-xl bg-[#0C0709] border border-[#2A161E] space-y-2 hover:border-[#D4AF37]/40 transition-colors">
+                    <div className="flex items-center justify-between">
+                      <FormInput className="w-4 h-4 text-[#D4AF37]" />
+                      <span className="font-mono text-[10px] text-[#8E7B74]">01 / FORM</span>
+                    </div>
+                    <h4 className="font-editorial text-sm font-bold text-[#FAF7F2]">
+                      Interest Survey Form
+                    </h4>
+                    <p className="text-[11px] text-[#F5E6D3]/75 leading-relaxed font-light">
+                      Users share sweet cravings, artisan preferences &amp; early access feedback on Next.js.
+                    </p>
+                  </div>
+
+                  {/* Step 2: Google Sheets */}
+                  <div className="p-3.5 rounded-xl bg-[#0C0709] border border-[#2A161E] space-y-2 hover:border-[#D4AF37]/40 transition-colors">
+                    <div className="flex items-center justify-between">
+                      <FileSpreadsheet className="w-4 h-4 text-emerald-400" />
+                      <span className="font-mono text-[10px] text-[#8E7B74]">02 / DATABASE</span>
+                    </div>
+                    <h4 className="font-editorial text-sm font-bold text-[#FAF7F2]">
+                      Google Sheets API
+                    </h4>
+                    <p className="text-[11px] text-[#F5E6D3]/75 leading-relaxed font-light">
+                      Submissions are streamed in real-time to a structured Google Spreadsheet.
+                    </p>
+                  </div>
+
+                  {/* Step 3: Automated Confirmation Email */}
+                  <div className="p-3.5 rounded-xl bg-[#0C0709] border border-[#2A161E] space-y-2 hover:border-[#D4AF37]/40 transition-colors">
+                    <div className="flex items-center justify-between">
+                      <MailCheck className="w-4 h-4 text-[#ECC865]" />
+                      <span className="font-mono text-[10px] text-[#8E7B74]">03 / NOTIFY</span>
+                    </div>
+                    <h4 className="font-editorial text-sm font-bold text-[#FAF7F2]">
+                      Automated Email
+                    </h4>
+                    <p className="text-[11px] text-[#F5E6D3]/75 leading-relaxed font-light">
+                      Sends &quot;Thank you for joining SwadDesh&quot; email automatically to the respondent.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
               {/* Live Metrics Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 border-t border-[#2A161E]">
                 {prelaunch.metrics.map((metric, mIdx) => (
                   <div
                     key={mIdx}
@@ -228,42 +290,25 @@ export const SwaddeshPrelaunchSection: React.FC = () => {
                 ))}
               </div>
 
-              {/* Teaser Visual Card */}
-              <div className="p-5 rounded-xl bg-[#0C0709]/90 border border-[#D4AF37]/25 space-y-3 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#D4AF37]/10 rounded-full blur-2xl pointer-events-none" />
+              {/* Bottom Flow Link */}
+              <div className="pt-2 flex flex-wrap items-center justify-between gap-3 text-xs font-mono border-t border-[#2A161E]/40">
+                <a
+                  href="#swaddesh-ecosystem"
+                  className="text-[#8E7B74] hover:text-[#D4AF37] transition-colors flex items-center gap-1 cursor-pointer"
+                >
+                  <span>Explore 4-Portal Architecture &amp; Flutter App Below</span>
+                  <ChevronDown className="w-3.5 h-3.5" />
+                </a>
 
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-[10px] text-[#D4AF37] font-semibold tracking-wider uppercase">
-                    PRE-LAUNCH EXPERIENCE
-                  </span>
-                  <span className="font-mono text-[10px] text-[#8E7B74]">
-                    Web Portal • swaddesh.in
-                  </span>
-                </div>
-
-                <p className="text-xs text-[#F5E6D3]/90 leading-relaxed font-light">
-                  Explore how we are eliminating artificial preservatives and enabling authentic halwais and artisans across regional India to reach urban doorsteps in under 48 hours.
-                </p>
-
-                <div className="pt-2 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
-                  <a
-                    href="#swaddesh-ecosystem"
-                    className="text-[#8E7B74] hover:text-[#D4AF37] transition-colors flex items-center gap-1 cursor-pointer"
-                  >
-                    <span>Read 4-Portal Architecture Below</span>
-                    <ChevronDown className="w-3.5 h-3.5" />
-                  </a>
-
-                  <a
-                    href={prelaunch.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#D4AF37] hover:text-[#F3E5AB] font-bold flex items-center gap-1 transition-colors"
-                  >
-                    <span>swaddesh.in</span>
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
-                </div>
+                <a
+                  href={prelaunch.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#D4AF37] hover:text-[#F3E5AB] font-bold flex items-center gap-1 transition-colors"
+                >
+                  <span>Try the Form at swaddesh.in</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
               </div>
             </div>
           </div>

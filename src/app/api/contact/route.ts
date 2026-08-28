@@ -136,6 +136,76 @@ function getConfirmationEmailHtml(name: string, message: string, timestamp: stri
   `;
 }
 
+function getAdminNotificationEmailHtml(name: string, senderEmail: string, message: string, timestamp: string): string {
+  return `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @media only screen and (max-width: 600px) {
+      .outer-table { padding: 12px 6px !important; }
+      .main-card { width: 100% !important; border-radius: 12px !important; }
+      .body-pad { padding: 20px 16px !important; }
+      .reply-btn { display: block !important; width: 100% !important; text-align: center !important; }
+    }
+  </style>
+</head>
+<body style="margin: 0; padding: 0; background-color: #0C0709; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #FAF7F2;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" class="outer-table" style="background-color: #0C0709; padding: 24px 10px; width: 100%; margin: 0 auto;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="100%" class="main-card" style="max-width: 580px; width: 100%; background-color: #150D11; border: 1px solid #D4AF37; border-radius: 14px; overflow: hidden; box-shadow: 0 10px 35px rgba(0,0,0,0.85); margin: 0 auto;">
+          <tr>
+            <td style="background: linear-gradient(135deg, #5A0F1C 0%, #150D11 100%); padding: 22px 20px; border-bottom: 1px solid #2A161E; text-align: left;">
+              <span style="font-family: monospace; font-size: 10px; letter-spacing: 1.5px; color: #D4AF37; text-transform: uppercase; background-color: rgba(12, 7, 9, 0.85); padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.4); display: inline-block; margin-bottom: 8px;">
+                ⚡ NEW PORTFOLIO TRANSMISSION
+              </span>
+              <h2 style="margin: 0; font-size: 20px; font-weight: 800; color: #FAF7F2;">
+                Message from ${name}
+              </h2>
+            </td>
+          </tr>
+          <tr>
+            <td class="body-pad" style="padding: 22px 20px; text-align: left;">
+              <table role="presentation" width="100%" style="background-color: #0C0709; border: 1px solid #2A161E; border-radius: 8px; padding: 14px 16px; margin-bottom: 18px;">
+                <tr>
+                  <td style="font-size: 13px; color: #F5E6D3; line-height: 1.7;">
+                    <strong style="color: #ECC865;">Sender Name:</strong> ${name}<br>
+                    <strong style="color: #ECC865;">Email:</strong> <a href="mailto:${senderEmail}" style="color: #D4AF37; text-decoration: none;">${senderEmail}</a><br>
+                    <strong style="color: #ECC865;">Timestamp:</strong> ${timestamp}
+                  </td>
+                </tr>
+              </table>
+
+              <table role="presentation" width="100%" style="background-color: #0C0709; border-left: 3px solid #D4AF37; border-radius: 6px; padding: 14px 16px; margin-bottom: 22px;">
+                <tr>
+                  <td>
+                    <span style="font-family: monospace; font-size: 9px; color: #8E7B74; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 6px;">
+                      MESSAGE CONTENT
+                    </span>
+                    <p style="margin: 0; font-size: 14px; color: #FAF7F2; line-height: 1.6; word-break: break-word; overflow-wrap: break-word;">
+                      ${message.replace(/</g, '&lt;').replace(/>/g, '&gt;')}
+                    </p>
+                  </td>
+                </tr>
+              </table>
+
+              <a href="mailto:${senderEmail}?subject=Re:%20Your%20message%20to%20Shreyansh%20Tiwari" class="reply-btn" style="display: inline-block; background-color: #5A0F1C; color: #FAF7F2; text-decoration: none; font-size: 12px; font-weight: bold; font-family: monospace; padding: 11px 22px; border-radius: 25px; border: 1px solid #D4AF37; letter-spacing: 1px;">
+                REPLY TO ${name.toUpperCase()} &rarr;
+              </a>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+  `;
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -245,13 +315,13 @@ export async function POST(request: Request) {
         autoReplySent = true;
         console.log(`[Contact API] Auto-reply sent to ${recipientEmail}, messageId: ${autoReplyInfo.messageId}`);
 
-        // (B) Send alert notification to Shreyansh
+        // (B) Send alert notification to Shreyansh (Display Name set to Sender's Name)
         const notifInfo = await transporter.sendMail({
-          from: `"Portfolio Contact Terminal" <${gmailUser}>`,
+          from: `"${senderName} (via Portfolio)" <${gmailUser}>`,
           to: gmailUser,
-          replyTo: recipientEmail,
-          subject: `⚡ New Portfolio Note from ${senderName} (${recipientEmail})`,
-          text: `Name: ${senderName}\nEmail: ${recipientEmail}\nTime: ${timestamp}\n\nMessage:\n${message}`,
+          replyTo: `"${senderName}" <${recipientEmail}>`,
+          subject: `⚡ New Message from ${senderName} (${recipientEmail})`,
+          html: getAdminNotificationEmailHtml(senderName, recipientEmail, message, timestamp),
         });
         notificationSent = true;
         console.log(`[Contact API] Admin notification sent to ${gmailUser}, messageId: ${notifInfo.messageId}`);

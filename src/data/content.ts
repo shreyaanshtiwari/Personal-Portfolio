@@ -324,7 +324,7 @@ export const portfolioData = {
       outcome:
         "Deployed a live user acquisition engine capturing hundreds of customer culinary preferences in real-time, syncing to Google Sheets, and delivering automated branded email confirmations.",
       tech: ["Next.js 15", "TypeScript", "Tailwind CSS", "Google Sheets API", "Automated Email Engine", "Java Spring Boot", "PostgreSQL"],
-      github: "https://github.com/shreyaanshtiwari/SwaadDesh",
+      github: "https://github.com/shreyaanshtiwari/SwadDesh-Prelaunch",
       liveDemo: "https://swaddesh.in",
       metrics: [
         { label: "Website Engine", value: "Next.js 15" },
@@ -431,6 +431,7 @@ export const portfolioData = {
       subheadline: "Interactive interest survey, instant Google Sheets recording, and automated email confirmations.",
       url: "https://swaddesh.in",
       domain: "swaddesh.in",
+      github: "https://github.com/shreyaanshtiwari/SwadDesh-Prelaunch",
       tagline: "Desh ka Swaad, Tradition ke Saath",
       description:
         "Our official pre-launch website is built in Next.js and live at swaddesh.in! It features an interactive consumer interest & opinion form that records user sweet preferences directly into Google Sheets in real-time and triggers an automated 'Thank you for joining SwadDesh' confirmation email to every respondent.",

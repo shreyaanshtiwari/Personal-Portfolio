@@ -19,7 +19,7 @@ import {
   Zap,
 } from 'lucide-react';
 import { portfolioData } from '@/data/content';
-import { InstagramIcon } from './Icons';
+import { InstagramIcon, GithubIcon } from './Icons';
 
 export const SwaddeshPrelaunchSection: React.FC = () => {
   const { swaddesh } = portfolioData;
@@ -119,6 +119,17 @@ export const SwaddeshPrelaunchSection: React.FC = () => {
               <Globe className="w-4 h-4 text-[#D4AF37]" />
               <span className="font-bold">VISIT PRE-LAUNCH WEBSITE</span>
               <ExternalLink className="w-3.5 h-3.5 text-[#D4AF37] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
+
+            <a
+              href={prelaunch.github || 'https://github.com/shreyaanshtiwari/SwadDesh-Prelaunch'}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-3.5 rounded-full bg-[#150D11]/90 hover:bg-[#1F1218] text-[#F5E6D3] hover:text-[#FAF7F2] font-mono text-xs tracking-wider border border-[#2A161E] hover:border-[#D4AF37]/50 transition-all group"
+            >
+              <GithubIcon className="w-4 h-4 text-[#D4AF37]" />
+              <span>PRELAUNCH REPO</span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-[#D4AF37] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </a>
 
             <a

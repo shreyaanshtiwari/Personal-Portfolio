@@ -134,19 +134,11 @@ export async function POST(request: Request) {
       timeStyle: 'short',
     }).format(new Date());
 
-    const payload = {
-      name,
-      email,
-      message,
-      timestamp,
-      source: 'Personal Portfolio Contact Terminal',
-    };
-
     let googleSheetsSuccess = false;
     let autoReplySent = false;
     let notificationSent = false;
 
-    // 1. Send data to Google Sheets Webhook (Apps Script / SheetDB)
+    // 1. Send data to Google Sheets (Supports both SheetDB and Google Apps Script Webhooks)
     const sheetsWebhookUrl =
       process.env.GOOGLE_SHEETS_WEBHOOK_URL ||
       process.env.NEXT_PUBLIC_GOOGLE_SHEETS_URL ||
@@ -154,17 +146,53 @@ export async function POST(request: Request) {
 
     if (sheetsWebhookUrl) {
       try {
+        const isSheetDb = sheetsWebhookUrl.includes('sheetdb.io');
+
+        // SheetDB requires matching column header names (Timestamp, Name, Email, Message, Source)
+        const sheetPayload = isSheetDb
+          ? {
+              data: [
+                {
+                  Timestamp: timestamp,
+                  Name: name,
+                  Email: email,
+                  Message: message,
+                  Source: 'Portfolio Contact Terminal',
+                  timestamp: timestamp,
+                  name: name,
+                  email: email,
+                  message: message,
+                  source: 'Portfolio Contact Terminal',
+                },
+              ],
+            }
+          : {
+              name,
+              email,
+              message,
+              timestamp,
+              source: 'Portfolio Contact Terminal',
+            };
+
         const sheetsRes = await fetch(sheetsWebhookUrl, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify(sheetPayload),
           redirect: 'follow',
         });
+
         if (sheetsRes.ok) {
           googleSheetsSuccess = true;
+          console.log('[Contact API] Logged to Google Sheet successfully');
+        } else {
+          const errText = await sheetsRes.text();
+          console.error('[Contact API] Google Sheet response error:', errText);
         }
       } catch (sheetsErr) {
-        console.error('Google Sheets Webhook dispatch failed:', sheetsErr);
+        console.error('[Contact API] Google Sheets Webhook dispatch failed:', sheetsErr);
       }
     }
 
@@ -212,7 +240,7 @@ export async function POST(request: Request) {
       console.warn('[Contact API] GMAIL_APP_PASSWORD is not set or empty.');
     }
 
-    // 3. Fallback to EmailJS if configured
+    // 3. Fallback to EmailJS if Nodemailer notification wasn't sent
     const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '';
     const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '';
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '';

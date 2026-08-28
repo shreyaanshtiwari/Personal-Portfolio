@@ -5,6 +5,7 @@ import { AboutSection } from '@/components/AboutSection';
 import { JourneyTimeline } from '@/components/JourneyTimeline';
 import { SkillsMatrix } from '@/components/SkillsMatrix';
 import { ProjectsSection } from '@/components/ProjectsSection';
+import { SwaddeshPrelaunchSection } from '@/components/SwaddeshPrelaunchSection';
 import { SwaddeshCaseStudy } from '@/components/SwaddeshCaseStudy';
 import { ArchitectureDiagram } from '@/components/ArchitectureDiagram';
 import { ContactSection } from '@/components/ContactSection';
@@ -19,12 +20,13 @@ export default function Home() {
       {/* Floating Glass Navigation */}
       <Navigation />
 
-      {/* 8 Connected Cinematic Story Chapters */}
+      {/* Connected Cinematic Story Chapters */}
       <HeroSection />
       <AboutSection />
       <JourneyTimeline />
       <SkillsMatrix />
       <ProjectsSection />
+      <SwaddeshPrelaunchSection />
       <SwaddeshCaseStudy />
       <ArchitectureDiagram />
       <ContactSection />

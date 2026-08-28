@@ -192,7 +192,7 @@ export const ProjectsSection: React.FC = () => {
                     >
                       <ExternalLink className="w-3.5 h-3.5 text-[#D4AF37] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                       <span className="font-semibold text-[#F3E5AB]">
-                        {project.id === 'swaddesh' ? 'VISIT SWADDESH.IN' : 'LIVE DEMO'}
+                        {project.id === 'swaddesh' ? 'PRE-LAUNCH (swaddesh.in)' : 'LIVE DEMO'}
                       </span>
                     </a>
                   )}

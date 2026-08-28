@@ -78,7 +78,7 @@ export const portfolioData = {
     email: "shreyanshtiwari812@gmail.com",
     github: "https://github.com/shreyaanshtiwari",
     linkedin: "https://linkedin.com/in/shreyansh-kumar-tiwari",
-    instagram: "https://instagram.com/shreyaanshtiwari",
+    instagram: "https://instagram.com/shreyaansh.tiwari",
     swaddeshWebsite: "https://swaddesh.in",
     swaddeshInstagram: "https://instagram.com/swaddesh.in",
     resumeUrl: "/resume.pdf",
@@ -86,8 +86,8 @@ export const portfolioData = {
     timezone: "Asia/Kolkata",
     status: {
       state: "Active Building",
-      focus: "Engineering SwadDesh Flutter App (In Progress) & Scaling 4 Web Portals",
-      badge: "LIVE ECOSYSTEM",
+      focus: "SwadDesh Pre-Launch Live (swaddesh.in) & Engineering Flutter Mobile App",
+      badge: "PRE-LAUNCH LIVE",
     },
   },
 
@@ -424,6 +424,30 @@ export const portfolioData = {
     website: "https://swaddesh.in",
     instagram: "https://instagram.com/swaddesh.in",
 
+    prelaunch: {
+      eyebrow: "06 / PRE-LAUNCH LIVE • FLAGSHIP VENTURE",
+      badge: "PRE-LAUNCH ACTIVE",
+      headline: "SwadDesh is in Pre-Launch",
+      subheadline: "Experience the vision connecting heritage Indian food artisans with digital scale.",
+      url: "https://swaddesh.in",
+      domain: "swaddesh.in",
+      tagline: "Desh ka Swaad, Tradition ke Saath",
+      description:
+        "Our dedicated pre-launch website is live at swaddesh.in! Explore our early taste collections, discover our mission to deliver preservative-free heritage sweets to urban doorsteps, and join our early access waitlist while the 4-portal system and Flutter mobile app are engineered for full launch.",
+      highlights: [
+        "100% Pure Desi Ghee & Preservative-Free Recipes",
+        "Direct Heritage Kitchen & Artisan Sourcing",
+        "Sub-48-Hour Fresh Climate-Controlled Transit",
+        "4-Portal Unified Digital Commerce Architecture",
+      ],
+      metrics: [
+        { label: "Current Phase", value: "Pre-Launch Live" },
+        { label: "Live Website", value: "swaddesh.in" },
+        { label: "Artisan Network", value: "100+ Regional Kitchens" },
+        { label: "Mobile Framework", value: "Flutter & Dart" },
+      ],
+    },
+
     journeySteps: [
       {
         id: "vendor",
@@ -579,7 +603,7 @@ export const portfolioData = {
     email: "shreyanshtiwari812@gmail.com",
     github: "https://github.com/shreyaanshtiwari",
     linkedin: "https://linkedin.com/in/shreyansh-kumar-tiwari",
-    instagram: "https://instagram.com/shreyaanshtiwari",
+    instagram: "https://instagram.com/shreyaansh.tiwari",
     swaddeshWebsite: "https://swaddesh.in",
     swaddeshInstagram: "https://instagram.com/swaddesh.in",
     resumeUrl: "/resume.pdf",

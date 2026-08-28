@@ -38,7 +38,7 @@ export const SwaddeshCaseStudy: React.FC = () => {
 
   return (
     <section
-      id="swaddesh"
+      id="swaddesh-ecosystem"
       className="relative py-16 sm:py-24 px-3 sm:px-6 max-w-[1440px] mx-auto w-full border-t border-[#2A161E]/60 overflow-hidden"
     >
       {/* Background Architectural Texture */}

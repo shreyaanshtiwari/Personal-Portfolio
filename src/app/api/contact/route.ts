@@ -9,29 +9,49 @@ function getConfirmationEmailHtml(name: string, message: string, timestamp: stri
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="x-apple-disable-message-reformatting">
+  <meta name="color-scheme" content="dark">
+  <meta name="supported-color-schemes" content="dark">
   <title>Transmission Received • Shreyansh Kumar Tiwari</title>
+  <style>
+    @media only screen and (max-width: 600px) {
+      .outer-table { padding: 12px 6px !important; }
+      .main-card { width: 100% !important; border-radius: 12px !important; }
+      .header-pad { padding: 20px 16px !important; }
+      .header-heading { font-size: 20px !important; }
+      .body-pad { padding: 20px 16px !important; }
+      .badge-pill { font-size: 9px !important; padding: 4px 8px !important; }
+      .quote-pad { padding: 12px 14px !important; margin: 16px 0 !important; }
+      .quote-text { font-size: 13px !important; }
+      .swaddesh-card { padding: 16px 14px !important; margin-top: 20px !important; }
+      .swaddesh-title { font-size: 16px !important; }
+      .swaddesh-cta { display: block !important; width: 100% !important; text-align: center !important; box-sizing: border-box !important; padding: 12px 16px !important; }
+      .social-link { display: block !important; margin-bottom: 8px !important; margin-right: 0 !important; }
+      .footer-pad { padding: 16px 12px !important; }
+    }
+  </style>
 </head>
-<body style="margin: 0; padding: 0; background-color: #0C0709; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #FAF7F2;">
-  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #0C0709; padding: 40px 15px;">
+<body style="margin: 0; padding: 0; background-color: #0C0709; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #FAF7F2; -webkit-font-smoothing: antialiased;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" class="outer-table" style="background-color: #0C0709; padding: 24px 10px; width: 100%; margin: 0 auto;">
     <tr>
       <td align="center">
         <!-- Main Email Container Card -->
-        <table role="presentation" width="100%" style="max-width: 600px; background-color: #150D11; border: 1px solid #D4AF37; border-radius: 16px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.85);">
+        <table role="presentation" width="100%" class="main-card" style="max-width: 580px; width: 100%; background-color: #150D11; border: 1px solid #D4AF37; border-radius: 14px; overflow: hidden; box-shadow: 0 10px 35px rgba(0,0,0,0.85); margin: 0 auto;">
           
           <!-- Top Header Bar -->
           <tr>
-            <td style="background: linear-gradient(135deg, #5A0F1C 0%, #150D11 100%); padding: 32px 30px; border-bottom: 1px solid #2A161E; text-align: left;">
+            <td class="header-pad" style="background: linear-gradient(135deg, #5A0F1C 0%, #150D11 100%); padding: 24px 22px; border-bottom: 1px solid #2A161E; text-align: left;">
               <table width="100%" cellspacing="0" cellpadding="0">
                 <tr>
                   <td>
-                    <span style="font-family: monospace; font-size: 11px; letter-spacing: 2px; color: #D4AF37; text-transform: uppercase; background-color: rgba(12, 7, 9, 0.85); padding: 5px 12px; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.4); display: inline-block; margin-bottom: 14px;">
-                      ● TRANSMISSION RECEIVED &bull; ACKNOWLEDGED
+                    <span class="badge-pill" style="font-family: monospace; font-size: 10px; letter-spacing: 1.5px; color: #D4AF37; text-transform: uppercase; background-color: rgba(12, 7, 9, 0.85); padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.4); display: inline-block; margin-bottom: 10px;">
+                      ● TRANSMISSION ACKNOWLEDGED
                     </span>
-                    <h1 style="margin: 0; font-size: 26px; font-weight: 800; color: #FAF7F2; letter-spacing: -0.5px; line-height: 1.2;">
+                    <h1 class="header-heading" style="margin: 0; font-size: 22px; font-weight: 800; color: #FAF7F2; letter-spacing: -0.5px; line-height: 1.25;">
                       Shreyansh Kumar Tiwari
                     </h1>
-                    <p style="margin: 6px 0 0 0; font-size: 13px; color: #ECC865; font-style: italic;">
-                      Full Stack Vibe Coder &amp; Founder of SwadDesh
+                    <p style="margin: 4px 0 0 0; font-size: 12px; color: #ECC865; font-style: italic;">
+                      Full Stack Vibe Coder &bull; Founder of SwadDesh
                     </p>
                   </td>
                 </tr>
@@ -41,23 +61,23 @@ function getConfirmationEmailHtml(name: string, message: string, timestamp: stri
 
           <!-- Body Content -->
           <tr>
-            <td style="padding: 36px 30px; text-align: left;">
-              <p style="font-size: 17px; line-height: 1.6; color: #FAF7F2; margin-top: 0;">
+            <td class="body-pad" style="padding: 24px 22px; text-align: left;">
+              <p style="font-size: 15px; line-height: 1.6; color: #FAF7F2; margin: 0 0 12px 0;">
                 Namaste <strong style="color: #ECC865;">${name}</strong>,
               </p>
               
-              <p style="font-size: 15px; line-height: 1.7; color: #F5E6D3; opacity: 0.95;">
+              <p style="font-size: 14px; line-height: 1.65; color: #F5E6D3; opacity: 0.95; margin: 0 0 16px 0;">
                 Thank you for reaching out! Your note has safely landed in my inbox. I personally review every transmission and will connect back with you <strong>ASAP (typically within 24 hours)</strong>.
               </p>
 
               <!-- Message Copy Box -->
-              <table role="presentation" width="100%" style="margin: 24px 0; background-color: #0C0709; border: 1px solid #2A161E; border-left: 4px solid #D4AF37; border-radius: 8px; padding: 18px;">
+              <table role="presentation" width="100%" class="quote-pad" style="margin: 18px 0; background-color: #0C0709; border: 1px solid #2A161E; border-left: 3px solid #D4AF37; border-radius: 8px; padding: 14px 16px; box-sizing: border-box;">
                 <tr>
                   <td>
-                    <span style="font-family: monospace; font-size: 10px; color: #8E7B74; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 8px;">
+                    <span style="font-family: monospace; font-size: 9px; color: #8E7B74; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 6px;">
                       YOUR TRANSMITTED NOTE &bull; ${timestamp}
                     </span>
-                    <p style="margin: 0; font-size: 14px; color: #F5E6D3; line-height: 1.6; font-style: italic;">
+                    <p class="quote-text" style="margin: 0; font-size: 13px; color: #F5E6D3; line-height: 1.55; font-style: italic; word-break: break-word; overflow-wrap: break-word;">
                       &quot;${message.replace(/</g, '&lt;').replace(/>/g, '&gt;')}&quot;
                     </p>
                   </td>
@@ -65,19 +85,19 @@ function getConfirmationEmailHtml(name: string, message: string, timestamp: stri
               </table>
 
               <!-- Flagship Venture Card: SwadDesh -->
-              <table role="presentation" width="100%" style="margin-top: 28px; background: linear-gradient(135deg, rgba(90, 15, 28, 0.45) 0%, rgba(21, 13, 17, 0.95) 100%); border: 1px solid rgba(212, 175, 55, 0.35); border-radius: 12px; padding: 20px;">
+              <table role="presentation" width="100%" class="swaddesh-card" style="margin-top: 22px; background: linear-gradient(135deg, rgba(90, 15, 28, 0.45) 0%, rgba(21, 13, 17, 0.95) 100%); border: 1px solid rgba(212, 175, 55, 0.35); border-radius: 10px; padding: 16px 18px; box-sizing: border-box;">
                 <tr>
                   <td>
-                    <span style="font-family: monospace; font-size: 10px; color: #D4AF37; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 6px;">
+                    <span style="font-family: monospace; font-size: 9px; color: #D4AF37; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 5px;">
                       FLAGSHIP VENTURE &bull; PRE-LAUNCH LIVE
                     </span>
-                    <h3 style="margin: 0 0 6px 0; font-size: 18px; color: #FAF7F2;">
+                    <h3 class="swaddesh-title" style="margin: 0 0 5px 0; font-size: 16px; color: #FAF7F2;">
                       SwadDesh • Regional Taste Portal
                     </h3>
-                    <p style="margin: 0 0 14px 0; font-size: 13px; color: #F5E6D3; opacity: 0.85; line-height: 1.5;">
-                      Desh ka Swaad, Tradition ke Saath. Our Next.js pre-launch website is live! Discover 100% pure desi ghee regional delicacies and join early access.
+                    <p style="margin: 0 0 12px 0; font-size: 12px; color: #F5E6D3; opacity: 0.85; line-height: 1.5;">
+                      Desh ka Swaad, Tradition ke Saath. Our Next.js pre-launch portal is live with 100% pure desi ghee regional delicacies!
                     </p>
-                    <a href="https://swaddesh.in" target="_blank" style="display: inline-block; background-color: #5A0F1C; color: #FAF7F2; text-decoration: none; font-size: 12px; font-weight: bold; font-family: monospace; padding: 10px 22px; border-radius: 25px; border: 1px solid #D4AF37; letter-spacing: 1px;">
+                    <a href="https://swaddesh.in" target="_blank" class="swaddesh-cta" style="display: inline-block; background-color: #5A0F1C; color: #FAF7F2; text-decoration: none; font-size: 11px; font-weight: bold; font-family: monospace; padding: 9px 18px; border-radius: 20px; border: 1px solid #D4AF37; letter-spacing: 1px;">
                       VISIT SWADDESH.IN &rarr;
                     </a>
                   </td>
@@ -85,14 +105,14 @@ function getConfirmationEmailHtml(name: string, message: string, timestamp: stri
               </table>
 
               <!-- Connect Channels -->
-              <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid #2A161E;">
-                <p style="font-family: monospace; font-size: 11px; color: #8E7B74; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 12px 0;">
+              <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid #2A161E;">
+                <p style="font-family: monospace; font-size: 10px; color: #8E7B74; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px 0;">
                   ONLINE CHANNELS:
                 </p>
-                <p style="margin: 0; font-size: 13px; line-height: 1.8;">
-                  <a href="https://linkedin.com/in/shreyansh-kumar-tiwari" target="_blank" style="color: #ECC865; text-decoration: none; margin-right: 15px; font-weight: 600;">LinkedIn &rarr;</a>
-                  <a href="https://github.com/shreyaanshtiwari" target="_blank" style="color: #ECC865; text-decoration: none; margin-right: 15px; font-weight: 600;">GitHub &rarr;</a>
-                  <a href="https://instagram.com/shreyaansh.tiwari" target="_blank" style="color: #ECC865; text-decoration: none; font-weight: 600;">Instagram (@shreyaansh.tiwari) &rarr;</a>
+                <p style="margin: 0; font-size: 12px; line-height: 1.8;">
+                  <a href="https://linkedin.com/in/shreyansh-kumar-tiwari" target="_blank" class="social-link" style="color: #ECC865; text-decoration: none; margin-right: 14px; font-weight: 600;">LinkedIn &rarr;</a>
+                  <a href="https://github.com/shreyaanshtiwari" target="_blank" class="social-link" style="color: #ECC865; text-decoration: none; margin-right: 14px; font-weight: 600;">GitHub &rarr;</a>
+                  <a href="https://instagram.com/shreyaansh.tiwari" target="_blank" class="social-link" style="color: #ECC865; text-decoration: none; font-weight: 600;">Instagram (@shreyaansh.tiwari) &rarr;</a>
                 </p>
               </div>
             </td>
@@ -100,9 +120,9 @@ function getConfirmationEmailHtml(name: string, message: string, timestamp: stri
 
           <!-- Footer -->
           <tr>
-            <td style="background-color: #0C0709; padding: 22px 30px; text-align: center; border-top: 1px solid #2A161E;">
-              <p style="margin: 0; font-size: 11px; font-family: monospace; color: #8E7B74;">
-                &copy; 2026 Shreyansh Kumar Tiwari &bull; Crafted with intention &bull; India (IST)
+            <td class="footer-pad" style="background-color: #0C0709; padding: 16px 20px; text-align: center; border-top: 1px solid #2A161E;">
+              <p style="margin: 0; font-size: 10px; font-family: monospace; color: #8E7B74; line-height: 1.5;">
+                &copy; 2026 Shreyansh Kumar Tiwari &bull; India (IST)
               </p>
             </td>
           </tr>

@@ -197,9 +197,9 @@ export async function POST(request: Request) {
     }
 
     // 2. Direct SMTP / Gmail Nodemailer Transport (for luxury automated confirmation email)
-    const gmailUser = (process.env.GMAIL_USER || process.env.EMAIL_USER || 'shreyanshtiwari812@gmail.com').trim();
+    const gmailUser = (process.env.GMAIL_USER || process.env.EMAIL_USER || 'shreyanshtiwari812@gmail.com').replace(/['"]+/g, '').trim();
     const rawPass = process.env.GMAIL_APP_PASSWORD || process.env.EMAIL_APP_PASSWORD || process.env.SMTP_PASSWORD || '';
-    const cleanPass = rawPass.replace(/\s+/g, '').trim();
+    const cleanPass = rawPass.replace(/['"]+/g, '').replace(/\s+/g, '').trim();
 
     if (cleanPass) {
       try {

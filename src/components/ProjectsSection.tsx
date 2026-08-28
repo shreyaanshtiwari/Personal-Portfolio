@@ -188,10 +188,12 @@ export const ProjectsSection: React.FC = () => {
                       href={project.liveDemo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 font-mono text-xs text-[#F5E6D3] hover:text-[#FAF7F2] border border-[#2A161E] hover:border-[#D4AF37]/50 px-4 py-3 rounded-full transition-all bg-[#150D11]/80"
+                      className="inline-flex items-center gap-1.5 font-mono text-xs text-[#F5E6D3] hover:text-[#FAF7F2] border border-[#D4AF37]/30 hover:border-[#D4AF37] px-4 py-3 rounded-full transition-all bg-[#150D11]/90 shadow-[0_0_12px_rgba(212,175,55,0.15)] group"
                     >
-                      <ExternalLink className="w-3.5 h-3.5 text-[#D4AF37]" />
-                      <span>LIVE DEMO</span>
+                      <ExternalLink className="w-3.5 h-3.5 text-[#D4AF37] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                      <span className="font-semibold text-[#F3E5AB]">
+                        {project.id === 'swaddesh' ? 'VISIT SWADDESH.IN' : 'LIVE DEMO'}
+                      </span>
                     </a>
                   )}
                 </div>

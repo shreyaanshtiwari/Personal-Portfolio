@@ -125,13 +125,23 @@ export const HeroSection: React.FC = () => {
                 <span className="font-mono text-[10px] text-[#8E7B74] block uppercase tracking-wider">
                   FLAGSHIP VENTURE
                 </span>
-                <a
-                  href="#swaddesh"
-                  className="font-editorial text-2xl font-bold text-[#FAF7F2] hover:text-[#D4AF37] transition-colors flex items-center justify-between group pt-0.5"
-                >
-                  <span>SwadDesh Ecosystem</span>
-                  <ArrowUpRight className="w-4 h-4 text-[#D4AF37] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </a>
+                <div className="flex items-center justify-between pt-0.5">
+                  <a
+                    href="#swaddesh"
+                    className="font-editorial text-2xl font-bold text-[#FAF7F2] hover:text-[#D4AF37] transition-colors"
+                  >
+                    SwadDesh Ecosystem
+                  </a>
+                  <a
+                    href="https://swaddesh.in"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 font-mono text-[10px] text-[#D4AF37] hover:text-[#FAF7F2] bg-[#0C0709] border border-[#D4AF37]/40 hover:border-[#D4AF37] px-2.5 py-1 rounded-full transition-all shadow-[0_0_10px_rgba(212,175,55,0.15)] group"
+                  >
+                    <span>swaddesh.in</span>
+                    <ArrowUpRight className="w-3 h-3 text-[#D4AF37] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </a>
+                </div>
               </div>
 
               <div className="pt-2 border-t border-[#2A161E]">

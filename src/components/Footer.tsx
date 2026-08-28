@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowUp, Globe2 } from 'lucide-react';
 import { portfolioData } from '@/data/content';
-import { GithubIcon, LinkedinIcon } from './Icons';
+import { GithubIcon, LinkedinIcon, InstagramIcon } from './Icons';
 
 export const Footer: React.FC = () => {
   const { footer, personal } = portfolioData;
@@ -76,6 +76,15 @@ export const Footer: React.FC = () => {
               className="p-2 rounded-full bg-[#150D11] hover:bg-[#1F1218] text-[#8E7B74] hover:text-[#D4AF37] border border-[#2A161E] transition-colors"
             >
               <LinkedinIcon className="w-4 h-4" />
+            </a>
+            <a
+              href={personal.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram Profile"
+              className="p-2 rounded-full bg-[#150D11] hover:bg-[#1F1218] text-[#8E7B74] hover:text-[#D4AF37] border border-[#2A161E] transition-colors"
+            >
+              <InstagramIcon className="w-4 h-4" />
             </a>
           </div>
 

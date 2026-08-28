@@ -10,8 +10,11 @@ import {
   ShoppingBag,
   Layers,
   Box,
+  Globe,
+  ExternalLink,
 } from 'lucide-react';
 import { portfolioData } from '@/data/content';
+import { GithubIcon, InstagramIcon } from './Icons';
 
 export const SwaddeshCaseStudy: React.FC = () => {
   const { swaddesh } = portfolioData;
@@ -83,6 +86,42 @@ export const SwaddeshCaseStudy: React.FC = () => {
           <p className="text-base sm:text-lg md:text-xl text-[#F5E6D3]/90 font-light leading-relaxed max-w-3xl pt-2">
             {swaddesh.headline}
           </p>
+
+          {/* Action Links & Platform Hub */}
+          <div className="pt-4 flex flex-wrap items-center gap-3">
+            <a
+              href="https://swaddesh.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-gradient-to-r from-[#5A0F1C] to-[#7C1729] hover:from-[#7C1729] hover:to-[#5A0F1C] text-[#FAF7F2] font-mono text-xs tracking-wider border border-[#D4AF37]/50 hover:border-[#D4AF37] transition-all shadow-[0_0_20px_rgba(212,175,55,0.25)] group"
+            >
+              <Globe className="w-4 h-4 text-[#D4AF37]" />
+              <span>VISIT LIVE PLATFORM (swaddesh.in)</span>
+              <ExternalLink className="w-3.5 h-3.5 text-[#D4AF37] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
+
+            <a
+              href={swaddesh.instagram || 'https://instagram.com/swaddesh.in'}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-3 rounded-full bg-[#150D11]/90 hover:bg-[#1F1218] text-[#F5E6D3] hover:text-[#FAF7F2] font-mono text-xs tracking-wider border border-[#2A161E] hover:border-[#D4AF37]/50 transition-all group"
+            >
+              <InstagramIcon className="w-4 h-4 text-[#D4AF37]" />
+              <span>INSTAGRAM</span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-[#D4AF37] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
+
+            <a
+              href={swaddesh.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-3 rounded-full bg-[#150D11]/90 hover:bg-[#1F1218] text-[#F5E6D3] hover:text-[#FAF7F2] font-mono text-xs tracking-wider border border-[#2A161E] hover:border-[#D4AF37]/50 transition-all group"
+            >
+              <GithubIcon className="w-4 h-4 text-[#D4AF37]" />
+              <span>GITHUB REPO</span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-[#D4AF37] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
+          </div>
         </div>
       </div>
 
@@ -240,15 +279,28 @@ export const SwaddeshCaseStudy: React.FC = () => {
               SwadDesh Architecture Tiers
             </h3>
           </div>
-          <a
-            href={swaddesh.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 font-mono text-xs text-[#FAF7F2] bg-[#5A0F1C] hover:bg-[#7C1729] px-5 py-2.5 rounded-full transition-all border border-[#D4AF37]/30 hover:border-[#D4AF37] shadow-lg group"
-          >
-            <span>VIEW CODEBASE</span>
-            <ArrowUpRight className="w-3.5 h-3.5 text-[#D4AF37] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </a>
+          <div className="flex items-center gap-3">
+            <a
+              href="https://swaddesh.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 font-mono text-xs text-[#F5E6D3] hover:text-[#FAF7F2] border border-[#2A161E] hover:border-[#D4AF37]/50 px-4 py-2.5 rounded-full transition-all bg-[#150D11]/80"
+            >
+              <Globe className="w-3.5 h-3.5 text-[#D4AF37]" />
+              <span>swaddesh.in</span>
+              <ExternalLink className="w-3 h-3 text-[#D4AF37]" />
+            </a>
+
+            <a
+              href={swaddesh.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 font-mono text-xs text-[#FAF7F2] bg-[#5A0F1C] hover:bg-[#7C1729] px-5 py-2.5 rounded-full transition-all border border-[#D4AF37]/30 hover:border-[#D4AF37] shadow-lg group"
+            >
+              <span>VIEW CODEBASE</span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-[#D4AF37] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

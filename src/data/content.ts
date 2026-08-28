@@ -78,6 +78,9 @@ export const portfolioData = {
     email: "shreyanshtiwari812@gmail.com",
     github: "https://github.com/shreyaanshtiwari",
     linkedin: "https://linkedin.com/in/shreyansh-kumar-tiwari",
+    instagram: "https://instagram.com/shreyaanshtiwari",
+    swaddeshWebsite: "https://swaddesh.in",
+    swaddeshInstagram: "https://instagram.com/swaddesh.in",
     resumeUrl: "/resume.pdf",
     location: "India",
     timezone: "Asia/Kolkata",
@@ -322,6 +325,7 @@ export const portfolioData = {
         "Created an end-to-end multi-portal architecture handling vendor onboarding, artisan batch control, order state transitions, and agent dispatch operations with transactional integrity.",
       tech: ["Java", "Spring Boot", "Next.js 15", "PostgreSQL", "Supabase", "TypeScript", "Tailwind CSS"],
       github: "https://github.com/shreyaanshtiwari/SwaadDesh",
+      liveDemo: "https://swaddesh.in",
       metrics: [
         { label: "Architecture", value: "4 Portals" },
         { label: "Backend", value: "Java Spring Boot" },
@@ -417,6 +421,8 @@ export const portfolioData = {
     philosophy:
       "Indian food traditions are centuries old; our software is built for the next century. We honor the taste by respecting the craftsmanship, eliminating artificial preservatives, and providing artisans direct digital dignity.",
     github: "https://github.com/shreyaanshtiwari/SwaadDesh",
+    website: "https://swaddesh.in",
+    instagram: "https://instagram.com/swaddesh.in",
 
     journeySteps: [
       {
@@ -573,6 +579,9 @@ export const portfolioData = {
     email: "shreyanshtiwari812@gmail.com",
     github: "https://github.com/shreyaanshtiwari",
     linkedin: "https://linkedin.com/in/shreyansh-kumar-tiwari",
+    instagram: "https://instagram.com/shreyaanshtiwari",
+    swaddeshWebsite: "https://swaddesh.in",
+    swaddeshInstagram: "https://instagram.com/swaddesh.in",
     resumeUrl: "/resume.pdf",
     location: "India [IST • UTC+5:30]",
     availability: "Available for high-impact software engineering & builder opportunities",

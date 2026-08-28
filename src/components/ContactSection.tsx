@@ -12,7 +12,7 @@ import {
   Terminal,
   Globe2,
 } from 'lucide-react';
-import { GithubIcon, LinkedinIcon } from './Icons';
+import { GithubIcon, LinkedinIcon, InstagramIcon } from './Icons';
 import { portfolioData } from '@/data/content';
 
 export const ContactSection: React.FC = () => {
@@ -142,14 +142,14 @@ export const ContactSection: React.FC = () => {
             <span className="font-mono text-xs text-[#8E7B74] block uppercase tracking-wider">
               ONLINE PRESENCE &amp; REPOSITORIES
             </span>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               <a
                 href={contact.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-4 rounded-xl glass-card flex items-center justify-between group hover:border-[#D4AF37]/40 transition-colors"
+                className="p-3.5 sm:p-4 rounded-xl glass-card flex items-center justify-between group hover:border-[#D4AF37]/40 transition-colors"
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2.5">
                   <LinkedinIcon className="w-4 h-4 text-[#D4AF37]" />
                   <span className="font-mono text-xs text-[#FAF7F2]">LINKEDIN</span>
                 </div>
@@ -160,15 +160,54 @@ export const ContactSection: React.FC = () => {
                 href={contact.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-4 rounded-xl glass-card flex items-center justify-between group hover:border-[#D4AF37]/40 transition-colors"
+                className="p-3.5 sm:p-4 rounded-xl glass-card flex items-center justify-between group hover:border-[#D4AF37]/40 transition-colors"
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2.5">
                   <GithubIcon className="w-4 h-4 text-[#D4AF37]" />
                   <span className="font-mono text-xs text-[#FAF7F2]">GITHUB</span>
                 </div>
                 <ArrowUpRight className="w-3.5 h-3.5 text-[#8E7B74] group-hover:text-[#D4AF37] transition-colors" />
               </a>
+
+              <a
+                href={contact.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3.5 sm:p-4 rounded-xl glass-card flex items-center justify-between group hover:border-[#D4AF37]/40 transition-colors"
+              >
+                <div className="flex items-center gap-2.5">
+                  <InstagramIcon className="w-4 h-4 text-[#D4AF37]" />
+                  <span className="font-mono text-xs text-[#FAF7F2]">INSTAGRAM</span>
+                </div>
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#8E7B74] group-hover:text-[#D4AF37] transition-colors" />
+              </a>
             </div>
+
+            {/* Live Flagship Venture Showcase Card */}
+            <a
+              href="https://swaddesh.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-4 rounded-xl bg-[#150D11]/90 border border-[#D4AF37]/35 hover:border-[#D4AF37] flex items-center justify-between group transition-all shadow-[0_0_15px_rgba(212,175,55,0.1)] block"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-[#5A0F1C] border border-[#D4AF37]/40 flex items-center justify-center text-[#D4AF37] font-bold text-xs">
+                  SD
+                </div>
+                <div>
+                  <span className="font-mono text-[10px] text-[#D4AF37] block uppercase tracking-wider">
+                    FLAGSHIP LIVE ECOSYSTEM
+                  </span>
+                  <span className="font-editorial text-base font-bold text-[#FAF7F2] group-hover:text-[#F3E5AB]">
+                    swaddesh.in
+                  </span>
+                </div>
+              </div>
+              <div className="flex items-center gap-2 font-mono text-xs text-[#F3E5AB]">
+                <span className="hidden sm:inline">EXPLORE PLATFORM</span>
+                <ArrowUpRight className="w-4 h-4 text-[#D4AF37] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </div>
+            </a>
           </div>
 
           {/* Location & Availability Beacon */}

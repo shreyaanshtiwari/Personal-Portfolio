@@ -108,7 +108,7 @@ export const portfolioData = {
     bioLeading: "I am a Full Stack Vibe Coder and product builder driven by execution, clean architecture, and delivering software that solves real commercial and human problems.",
     bioParagraph1: "I don't just write code or memorize syntax; I build complete functional engines from the database schema up to high-performance reactive web interfaces and native Flutter mobile apps.",
     bioParagraph2: "I can take any idea from zero to a live, production-grade ecosystem with sub-second performance, Java Spring Boot APIs, and scalable PostgreSQL infrastructure on Supabase.",
-    imagePath: "/Shreyansh Tiwari.png",
+    imagePath: "/shreyansh-tiwari.png",
     imageAlt: "Shreyansh Kumar Tiwari — Full Stack Vibe Coder & Founder",
     principles: [
       {

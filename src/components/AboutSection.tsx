@@ -91,7 +91,8 @@ export const AboutSection: React.FC = () => {
                   alt={about.imageAlt}
                   fill
                   priority
-                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+                  className="object-cover object-top sm:object-[center_15%] group-hover:scale-105 transition-transform duration-700"
                 />
                 {/* Subtle gradient vignette */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0C0709] via-transparent to-transparent opacity-80" />

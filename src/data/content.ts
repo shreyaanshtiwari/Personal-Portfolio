@@ -73,11 +73,12 @@ export const portfolioData = {
   personal: {
     name: "Shreyansh Kumar Tiwari",
     shortName: "Shreyansh",
-    title: "Full Stack Vibe Coder & Founder of SwadDesh",
+    title: "Founder & CEO of SwadDesh • Full Stack Vibe Coder",
     statement: "Building thoughtful digital products where modern software engineering meets Indian cultural roots.",
-    email: "shreyanshtiwari812@gmail.com",
+    email: "shreyanshtiwari@swaddesh.in",
     github: "https://github.com/shreyaanshtiwari",
     linkedin: "https://linkedin.com/in/shreyansh-kumar-tiwari",
+    linkedinName: "Shreyansh Kumar Tiwari",
     instagram: "https://instagram.com/shreyaansh.tiwari",
     swaddeshWebsite: "https://swaddesh.in",
     swaddeshInstagram: "https://instagram.com/swaddesh.in",
@@ -95,9 +96,9 @@ export const portfolioData = {
     eyebrow: "01 / CAPABILITIES • BUILDER IDENTITY",
     namePart1: "SHREYANSH",
     namePart2: "KUMAR TIWARI",
-    role: "Full Stack Vibe Coder & Founder of SwadDesh",
+    role: "Founder & CEO of SwadDesh • Full Stack Vibe Coder",
     tagline: "I can engineer scalable full-stack web applications, Java Spring Boot backends, Flutter mobile apps, and distributed PostgreSQL ecosystems.",
-    statsPill: "Founder • Product Engineer • CS Student",
+    statsPill: "Founder & CEO • Full Stack Vibe Coder • Product Engineer",
     ctaPrimary: "EXPLORE WHAT I CAN BUILD",
     ctaSecondary: "VIEW RESUME",
   },
@@ -105,11 +106,11 @@ export const portfolioData = {
   about: {
     eyebrow: "02 / ABOUT • WHAT I BRING TO THE TABLE",
     heading: "Technical mind. Cultural soul.",
-    bioLeading: "I am a Full Stack Vibe Coder and product builder driven by execution, clean architecture, and delivering software that solves real commercial and human problems.",
+    bioLeading: "I am the Founder & CEO of SwadDesh and a Full Stack Vibe Coder & product builder driven by execution, clean architecture, and delivering software that solves real commercial and human problems.",
     bioParagraph1: "I don't just write code or memorize syntax; I build complete functional engines from the database schema up to high-performance reactive web interfaces and native Flutter mobile apps.",
     bioParagraph2: "I can take any idea from zero to a live, production-grade ecosystem with sub-second performance, Java Spring Boot APIs, and scalable PostgreSQL infrastructure on Supabase.",
     imagePath: "/shreyansh-tiwari.png",
-    imageAlt: "Shreyansh Kumar Tiwari — Full Stack Vibe Coder & Founder",
+    imageAlt: "Shreyansh Kumar Tiwari — Founder & CEO of SwadDesh • Full Stack Vibe Coder",
     principles: [
       {
         number: "01",
@@ -184,9 +185,9 @@ export const portfolioData = {
     {
       number: "04",
       year: "2024",
-      phase: "FOUNDER & ARCHITECT",
+      phase: "FOUNDER & CEO • ARCHITECT",
       title: "Founding SwadDesh — 4-Portal Ecosystem",
-      role: "Founder & Lead System Architect",
+      role: "Founder & CEO • Lead System Architect",
       description:
         "Conceived, architected, and engineered SwadDesh — an end-to-end 4-portal digital commerce ecosystem connecting heritage Indian food artisans with urban consumers, powered by Java Spring Boot and PostgreSQL on Supabase.",
       highlights: [
@@ -315,7 +316,7 @@ export const portfolioData = {
       tagline: "Desh ka Swaad, Tradition ke Saath — capturing authentic taste opinions via automated cloud pipelines.",
       category: "FLAGSHIP VENTURE • PRE-LAUNCH LIVE",
       status: "Pre-Launch Website Live",
-      role: "Founder & Lead Developer",
+      role: "Founder & CEO • Lead Developer",
       featured: true,
       problem:
         "Traditional food lovers lack a platform to request and discover forgotten regional delicacies, while new ventures need verified market demand, consumer opinions, and instant early-access engagement before physical rollout.",
@@ -618,9 +619,10 @@ export const portfolioData = {
     eyebrow: "08 / FINAL CONNECTION • TERMINAL",
     heading: "Let's Build Something Meaningful.",
     tagline: "Tell me what you want to build. I can design the architecture, build the full-stack web system, develop Flutter mobile apps, or collaborate on high-impact products.",
-    email: "shreyanshtiwari812@gmail.com",
+    email: "shreyanshtiwari@swaddesh.in",
     github: "https://github.com/shreyaanshtiwari",
     linkedin: "https://linkedin.com/in/shreyansh-kumar-tiwari",
+    linkedinName: "Shreyansh Kumar Tiwari",
     instagram: "https://instagram.com/shreyaansh.tiwari",
     swaddeshWebsite: "https://swaddesh.in",
     swaddeshInstagram: "https://instagram.com/swaddesh.in",
@@ -631,7 +633,7 @@ export const portfolioData = {
 
   footer: {
     name: "Shreyansh Kumar Tiwari",
-    identity: "Full Stack Vibe Coder & Founder of SwadDesh",
+    identity: "Founder & CEO of SwadDesh • Full Stack Vibe Coder",
     motto: "Technical mind. Cultural soul.",
     note: "Crafted with intention. Powered by Next.js, TypeScript, Flutter & Lenis.",
     copyrightYear: "2026",

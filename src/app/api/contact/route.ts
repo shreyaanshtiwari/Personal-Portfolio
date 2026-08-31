@@ -51,7 +51,7 @@ function getConfirmationEmailHtml(name: string, message: string, timestamp: stri
                       Shreyansh Kumar Tiwari
                     </h1>
                     <p style="margin: 4px 0 0 0; font-size: 12px; color: #ECC865; font-style: italic;">
-                      Full Stack Vibe Coder &bull; Founder of SwadDesh
+                      Founder &amp; CEO of SwadDesh &bull; Full Stack Vibe Coder
                     </p>
                   </td>
                 </tr>
@@ -110,7 +110,7 @@ function getConfirmationEmailHtml(name: string, message: string, timestamp: stri
                   ONLINE CHANNELS:
                 </p>
                 <p style="margin: 0; font-size: 12px; line-height: 1.8;">
-                  <a href="https://linkedin.com/in/shreyansh-kumar-tiwari" target="_blank" class="social-link" style="color: #ECC865; text-decoration: none; margin-right: 14px; font-weight: 600;">LinkedIn &rarr;</a>
+                  <a href="https://linkedin.com/in/shreyansh-kumar-tiwari" target="_blank" class="social-link" style="color: #ECC865; text-decoration: none; margin-right: 14px; font-weight: 600;">LinkedIn (Shreyansh Kumar Tiwari) &rarr;</a>
                   <a href="https://github.com/shreyaanshtiwari" target="_blank" class="social-link" style="color: #ECC865; text-decoration: none; margin-right: 14px; font-weight: 600;">GitHub &rarr;</a>
                   <a href="https://instagram.com/shreyaansh.tiwari" target="_blank" class="social-link" style="color: #ECC865; text-decoration: none; font-weight: 600;">Instagram (@shreyaansh.tiwari) &rarr;</a>
                 </p>
@@ -250,12 +250,14 @@ export async function POST(request: Request) {
                   Name: senderName,
                   Email: recipientEmail,
                   Message: message,
-                  Source: 'Portfolio Contact Terminal',
+                  Messages: message,
+                  Source: 'Shreyansh Kumar Tiwari Portfolio Contact Terminal',
                   timestamp: timestamp,
                   name: senderName,
                   email: recipientEmail,
                   message: message,
-                  source: 'Portfolio Contact Terminal',
+                  messages: message,
+                  source: 'Shreyansh Kumar Tiwari Portfolio Contact Terminal',
                 },
               ],
             }
@@ -263,8 +265,9 @@ export async function POST(request: Request) {
               name: senderName,
               email: recipientEmail,
               message,
+              messages: message,
               timestamp,
-              source: 'Portfolio Contact Terminal',
+              source: 'Shreyansh Kumar Tiwari Portfolio Contact Terminal',
             };
 
         const sheetsRes = await fetch(sheetsWebhookUrl, {
@@ -290,37 +293,51 @@ export async function POST(request: Request) {
     }
 
     // 2. Direct SMTP / Gmail Nodemailer Transport (for luxury automated confirmation email)
-    const gmailUser = (process.env.GMAIL_USER || process.env.EMAIL_USER || 'shreyanshtiwari812@gmail.com').replace(/['"]+/g, '').trim();
-    const rawPass = process.env.GMAIL_APP_PASSWORD || process.env.EMAIL_APP_PASSWORD || process.env.SMTP_PASSWORD || '';
+    const smtpHost = process.env.SMTP_HOST || '';
+    const smtpPort = Number(process.env.SMTP_PORT) || (smtpHost ? 465 : undefined);
+    const smtpSecure = process.env.SMTP_SECURE ? process.env.SMTP_SECURE === 'true' : (smtpPort === 465);
+    const gmailUser = (process.env.GMAIL_USER || process.env.SMTP_USER || process.env.EMAIL_USER || 'shreyanshtiwari812@gmail.com').replace(/['"]+/g, '').trim();
+    const publicAliasEmail = (process.env.SENDER_EMAIL || process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'shreyanshtiwari@swaddesh.in').replace(/['"]+/g, '').trim();
+    const rawPass = process.env.GMAIL_APP_PASSWORD || process.env.SMTP_PASSWORD || process.env.EMAIL_APP_PASSWORD || '';
     const cleanPass = rawPass.replace(/['"]+/g, '').replace(/\s+/g, '').trim();
 
     if (cleanPass) {
       try {
-        const transporter = nodemailer.createTransport({
-          service: 'gmail',
-          auth: {
-            user: gmailUser,
-            pass: cleanPass,
-          },
-        });
+        const transporter = smtpHost
+          ? nodemailer.createTransport({
+              host: smtpHost,
+              port: smtpPort,
+              secure: smtpSecure,
+              auth: {
+                user: gmailUser,
+                pass: cleanPass,
+              },
+            })
+          : nodemailer.createTransport({
+              service: 'gmail',
+              auth: {
+                user: gmailUser,
+                pass: cleanPass,
+              },
+            });
 
         // (A) Send personalized luxury dark confirmation email directly to sender's entered email
         const autoReplyInfo = await transporter.sendMail({
-          from: `"Shreyansh Kumar Tiwari" <${gmailUser}>`,
+          from: `"Shreyansh Kumar Tiwari (SwadDesh)" <${publicAliasEmail}>`,
           to: recipientEmail,
-          replyTo: gmailUser,
+          replyTo: publicAliasEmail,
           subject: `Transmission Received • Thank you for reaching out, ${senderName}!`,
           html: getConfirmationEmailHtml(senderName, message, timestamp),
         });
         autoReplySent = true;
         console.log(`[Contact API] Auto-reply sent to ${recipientEmail}, messageId: ${autoReplyInfo.messageId}`);
 
-        // (B) Send alert notification to Shreyansh (Display Name set to Sender's Name)
+        // (B) Send alert notification to Shreyansh (sent to primary Gmail swaddesh111077@gmail.com)
         const notifInfo = await transporter.sendMail({
           from: `"${senderName} (via Portfolio)" <${gmailUser}>`,
           to: gmailUser,
           replyTo: `"${senderName}" <${recipientEmail}>`,
-          subject: `⚡ New Message from ${senderName} (${recipientEmail})`,
+          subject: `⚡ New Transmission from ${senderName} (${recipientEmail})`,
           html: getAdminNotificationEmailHtml(senderName, recipientEmail, message, timestamp),
         });
         notificationSent = true;

@@ -100,13 +100,13 @@ export const AboutSection: React.FC = () => {
                 {/* Profile Card Footer Overlay */}
                 <div className="absolute bottom-0 left-0 right-0 p-5 space-y-1">
                   <span className="font-mono text-[10px] text-[#D4AF37] tracking-widest uppercase block">
-                    FOUNDER & BUILDER
+                    FOUNDER &amp; CEO • BUILDER
                   </span>
                   <h3 className="font-editorial text-2xl font-bold text-[#FAF7F2]">
                     Shreyansh Tiwari
                   </h3>
                   <p className="font-mono text-[11px] text-[#F5E6D3]/75">
-                    B.Tech CSE • Full Stack Vibe Coder
+                    Founder &amp; CEO (SwadDesh) • Full Stack Vibe Coder
                   </p>
                 </div>
               </div>

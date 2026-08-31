@@ -86,7 +86,7 @@ export const Navigation: React.FC = () => {
                 </span>
               </div>
               <span className="font-mono text-[9px] text-[#8E7B74] uppercase tracking-wider hidden sm:block">
-                Full Stack Vibe Coder &amp; Founder
+                Founder &amp; CEO • Full Stack Vibe Coder
               </span>
             </div>
           </a>

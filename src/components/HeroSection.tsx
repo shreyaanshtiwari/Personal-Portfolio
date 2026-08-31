@@ -169,12 +169,12 @@ export const HeroSection: React.FC = () => {
             {/* Quick Specs Pill Row */}
             <div className="pt-3 border-t border-[#2A161E] grid grid-cols-2 gap-2">
               <div className="p-2.5 rounded-lg bg-[#0C0709]/80 border border-[#2A161E] text-center">
-                <span className="font-mono text-[10px] text-[#8E7B74] block">CAPABILITY</span>
-                <span className="font-mono text-xs font-bold text-[#D4AF37]">Full Stack Vibe Coder</span>
+                <span className="font-mono text-[10px] text-[#8E7B74] block">ROLE</span>
+                <span className="font-mono text-xs font-bold text-[#D4AF37]">Founder &amp; CEO</span>
               </div>
               <div className="p-2.5 rounded-lg bg-[#0C0709]/80 border border-[#2A161E] text-center">
-                <span className="font-mono text-[10px] text-[#8E7B74] block">EXECUTION</span>
-                <span className="font-mono text-xs font-bold text-[#F3E5AB]">I Build &amp; Ship</span>
+                <span className="font-mono text-[10px] text-[#8E7B74] block">ENGINEERING</span>
+                <span className="font-mono text-xs font-bold text-[#F3E5AB]">Full Stack Vibe Coder</span>
               </div>
             </div>
           </div>

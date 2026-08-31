@@ -150,10 +150,13 @@ export const ContactSection: React.FC = () => {
                 className="p-3.5 sm:p-4 rounded-xl glass-card flex items-center justify-between group hover:border-[#D4AF37]/40 transition-colors"
               >
                 <div className="flex items-center gap-2.5">
-                  <LinkedinIcon className="w-4 h-4 text-[#D4AF37]" />
-                  <span className="font-mono text-xs text-[#FAF7F2]">LINKEDIN</span>
+                  <LinkedinIcon className="w-4 h-4 text-[#D4AF37] shrink-0" />
+                  <div className="flex flex-col text-left">
+                    <span className="font-mono text-xs text-[#FAF7F2]">LINKEDIN</span>
+                    <span className="font-mono text-[10px] text-[#8E7B74] group-hover:text-[#F5E6D3] transition-colors truncate max-w-[130px]">Shreyansh Kumar Tiwari</span>
+                  </div>
                 </div>
-                <ArrowUpRight className="w-3.5 h-3.5 text-[#8E7B74] group-hover:text-[#D4AF37] transition-colors" />
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#8E7B74] group-hover:text-[#D4AF37] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </a>
 
               <a
@@ -163,10 +166,13 @@ export const ContactSection: React.FC = () => {
                 className="p-3.5 sm:p-4 rounded-xl glass-card flex items-center justify-between group hover:border-[#D4AF37]/40 transition-colors"
               >
                 <div className="flex items-center gap-2.5">
-                  <GithubIcon className="w-4 h-4 text-[#D4AF37]" />
-                  <span className="font-mono text-xs text-[#FAF7F2]">GITHUB</span>
+                  <GithubIcon className="w-4 h-4 text-[#D4AF37] shrink-0" />
+                  <div className="flex flex-col text-left">
+                    <span className="font-mono text-xs text-[#FAF7F2]">GITHUB</span>
+                    <span className="font-mono text-[10px] text-[#8E7B74] group-hover:text-[#F5E6D3] transition-colors">@shreyaanshtiwari</span>
+                  </div>
                 </div>
-                <ArrowUpRight className="w-3.5 h-3.5 text-[#8E7B74] group-hover:text-[#D4AF37] transition-colors" />
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#8E7B74] group-hover:text-[#D4AF37] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </a>
 
               <a
@@ -176,10 +182,13 @@ export const ContactSection: React.FC = () => {
                 className="p-3.5 sm:p-4 rounded-xl glass-card flex items-center justify-between group hover:border-[#D4AF37]/40 transition-colors"
               >
                 <div className="flex items-center gap-2.5">
-                  <InstagramIcon className="w-4 h-4 text-[#D4AF37]" />
-                  <span className="font-mono text-xs text-[#FAF7F2]">INSTAGRAM</span>
+                  <InstagramIcon className="w-4 h-4 text-[#D4AF37] shrink-0" />
+                  <div className="flex flex-col text-left">
+                    <span className="font-mono text-xs text-[#FAF7F2]">INSTAGRAM</span>
+                    <span className="font-mono text-[10px] text-[#8E7B74] group-hover:text-[#F5E6D3] transition-colors">@shreyaansh.tiwari</span>
+                  </div>
                 </div>
-                <ArrowUpRight className="w-3.5 h-3.5 text-[#8E7B74] group-hover:text-[#D4AF37] transition-colors" />
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#8E7B74] group-hover:text-[#D4AF37] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </a>
             </div>
 

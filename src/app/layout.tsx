@@ -24,14 +24,18 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Shreyansh Kumar Tiwari — Full Stack Vibe Coder & Founder of SwadDesh",
+  title: "Shreyansh Kumar Tiwari — Founder & CEO of SwadDesh • Full Stack Vibe Coder",
   description:
-    "Personal digital portfolio and systems showcase of Shreyansh Kumar Tiwari. Full Stack Vibe Coder, Product Engineer, and Founder of SwadDesh. Engineering where technology meets Indian roots.",
+    "Personal digital portfolio and systems showcase of Shreyansh Kumar Tiwari. Founder & CEO of SwadDesh, Full Stack Vibe Coder, and Product Engineer. Engineering where technology meets Indian roots.",
   keywords: [
     "Shreyansh Kumar Tiwari",
     "Shreyansh Tiwari",
     "SwadDesh",
+    "Founder & CEO",
     "Founder",
+    "CEO",
+    "SwadDesh Founder",
+    "SwadDesh CEO",
     "Full Stack Vibe Coder",
     "Full Stack Developer",
     "Flutter",
@@ -50,7 +54,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Shreyansh Kumar Tiwari", url: "https://github.com/shreyaanshtiwari" }],
   creator: "Shreyansh Kumar Tiwari",
   openGraph: {
-    title: "Shreyansh Kumar Tiwari — Full Stack Vibe Coder & Founder of SwadDesh",
+    title: "Shreyansh Kumar Tiwari — Founder & CEO of SwadDesh • Full Stack Vibe Coder",
     description:
       "Technical mind. Cultural soul. Explore the products, systems, and journey of Shreyansh Kumar Tiwari.",
     type: "website",
@@ -59,19 +63,22 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shreyansh Kumar Tiwari — Full Stack Vibe Coder & Founder of SwadDesh",
+    title: "Shreyansh Kumar Tiwari — Founder & CEO of SwadDesh • Full Stack Vibe Coder",
     description:
       "Technical mind. Cultural soul. Building ideas into scalable production systems.",
   },
   icons: {
     icon: [
-      { url: '/icon.png', sizes: '256x256', type: 'image/png' },
       { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icon.png', sizes: '256x256', type: 'image/png' },
     ],
     apple: [
-      { url: '/apple-icon.png', sizes: '256x256', type: 'image/png' },
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
     ],
   },
+  manifest: '/site.webmanifest',
   robots: {
     index: true,
     follow: true,
@@ -92,6 +99,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark scroll-smooth lenis">
+      <head>
+        <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon.png?v=2" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} bg-[#0C0709] text-[#FAF7F2] antialiased selection:bg-[#5A0F1C] selection:text-[#F3E5AB]`}
       >

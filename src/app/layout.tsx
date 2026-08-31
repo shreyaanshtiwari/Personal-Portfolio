@@ -24,48 +24,61 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Shreyansh Kumar Tiwari — Founder & CEO of SwadDesh • Full Stack Vibe Coder",
+  metadataBase: new URL("https://shreyanshtiwari.swaddesh.in"),
+  title: "Shreyansh Kumar Tiwari | Founder & CEO of SwadDesh",
   description:
-    "Personal digital portfolio and systems showcase of Shreyansh Kumar Tiwari. Founder & CEO of SwadDesh, Full Stack Vibe Coder, and Product Engineer. Engineering where technology meets Indian roots.",
+    "Official digital portfolio of Shreyansh Kumar Tiwari, Founder & CEO of SwadDesh. Full-stack engineer building scalable web, Java Spring Boot & Flutter systems.",
   keywords: [
-    "Shreyansh Kumar Tiwari",
     "Shreyansh Tiwari",
+    "Shreyansh Kumar Tiwari",
+    "Shreyansh Tiwari SwadDesh",
+    "Shreyansh Kumar Tiwari SwadDesh",
+    "Shreyansh Tiwari Founder",
+    "Shreyansh Tiwari Founder & CEO",
+    "Shreyansh Tiwari SwadDesh Founder",
     "SwadDesh",
     "Founder & CEO",
-    "Founder",
-    "CEO",
-    "SwadDesh Founder",
-    "SwadDesh CEO",
     "Full Stack Vibe Coder",
     "Full Stack Developer",
+    "Product Engineer",
     "Flutter",
     "Dart",
     "Java",
     "Spring Boot",
     "Next.js",
     "TypeScript",
-    "FastAPI",
-    "Python",
     "PostgreSQL",
     "Supabase",
     "B.Tech CSE",
-    "Awwwards Portfolio",
   ],
   authors: [{ name: "Shreyansh Kumar Tiwari", url: "https://github.com/shreyaanshtiwari" }],
   creator: "Shreyansh Kumar Tiwari",
+  alternates: {
+    canonical: "https://shreyanshtiwari.swaddesh.in/",
+  },
   openGraph: {
-    title: "Shreyansh Kumar Tiwari — Founder & CEO of SwadDesh • Full Stack Vibe Coder",
-    description:
-      "Technical mind. Cultural soul. Explore the products, systems, and journey of Shreyansh Kumar Tiwari.",
     type: "website",
     locale: "en_US",
+    url: "https://shreyanshtiwari.swaddesh.in/",
+    title: "Shreyansh Kumar Tiwari | Founder & CEO of SwadDesh",
+    description:
+      "Official digital portfolio of Shreyansh Kumar Tiwari, Founder & CEO of SwadDesh. Full-stack engineer building scalable web, Java Spring Boot & Flutter systems.",
     siteName: "Shreyansh Kumar Tiwari Portfolio",
+    images: [
+      {
+        url: "https://shreyanshtiwari.swaddesh.in/shreyansh-tiwari.png",
+        width: 1200,
+        height: 630,
+        alt: "Shreyansh Kumar Tiwari — Founder & CEO of SwadDesh",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shreyansh Kumar Tiwari — Founder & CEO of SwadDesh • Full Stack Vibe Coder",
+    title: "Shreyansh Kumar Tiwari | Founder & CEO of SwadDesh",
     description:
-      "Technical mind. Cultural soul. Building ideas into scalable production systems.",
+      "Official digital portfolio of Shreyansh Kumar Tiwari, Founder & CEO of SwadDesh. Full-stack engineer building scalable web, Java Spring Boot & Flutter systems.",
+    images: ["https://shreyanshtiwari.swaddesh.in/shreyansh-tiwari.png"],
   },
   icons: {
     icon: [
@@ -83,6 +96,13 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
@@ -91,6 +111,84 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://shreyanshtiwari.swaddesh.in/#person",
+      name: "Shreyansh Kumar Tiwari",
+      alternateName: [
+        "Shreyansh Tiwari",
+        "Shreyansh",
+        "Shreyansh SwadDesh"
+      ],
+      url: "https://shreyanshtiwari.swaddesh.in/",
+      image: "https://shreyanshtiwari.swaddesh.in/shreyansh-tiwari.png",
+      jobTitle: "Founder & CEO",
+      worksFor: {
+        "@type": "Organization",
+        "@id": "https://swaddesh.in/#organization",
+        name: "SwadDesh",
+        url: "https://swaddesh.in"
+      },
+      description: "Founder & CEO of SwadDesh, Product Engineer, and Full Stack Developer specialized in Java Spring Boot, Flutter, and Next.js scalable ecosystems.",
+      sameAs: [
+        "https://linkedin.com/in/shreyansh-kumar-tiwari",
+        "https://github.com/shreyaanshtiwari",
+        "https://instagram.com/shreyaansh.tiwari"
+      ],
+      knowsAbout: [
+        "Software Engineering",
+        "Full Stack Development",
+        "System Architecture",
+        "Java Spring Boot",
+        "Flutter & Dart Mobile Development",
+        "PostgreSQL & Supabase",
+        "Next.js & React",
+        "E-Commerce Systems"
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://swaddesh.in/#organization",
+      name: "SwadDesh",
+      url: "https://swaddesh.in",
+      founder: {
+        "@id": "https://shreyanshtiwari.swaddesh.in/#person"
+      },
+      sameAs: [
+        "https://instagram.com/swaddesh.in",
+        "https://github.com/shreyaanshtiwari/SwadDesh-Prelaunch"
+      ],
+      description: "Digital food commerce and regional delicacy ecosystem connecting heritage artisans with consumers."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://shreyanshtiwari.swaddesh.in/#website",
+      url: "https://shreyanshtiwari.swaddesh.in/",
+      name: "Shreyansh Kumar Tiwari | Founder & CEO of SwadDesh",
+      description: "Official digital portfolio and systems showcase of Shreyansh Kumar Tiwari. Founder & CEO of SwadDesh and Full Stack Engineer.",
+      publisher: {
+        "@id": "https://shreyanshtiwari.swaddesh.in/#person"
+      },
+      inLanguage: "en-US"
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "https://shreyanshtiwari.swaddesh.in/#profilepage",
+      url: "https://shreyanshtiwari.swaddesh.in/",
+      name: "Shreyansh Kumar Tiwari Portfolio",
+      isPartOf: {
+        "@id": "https://shreyanshtiwari.swaddesh.in/#website"
+      },
+      mainEntity: {
+        "@id": "https://shreyanshtiwari.swaddesh.in/#person"
+      }
+    }
+  ]
 };
 
 export default function RootLayout({
@@ -105,6 +203,10 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon.png?v=2" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} bg-[#0C0709] text-[#FAF7F2] antialiased selection:bg-[#5A0F1C] selection:text-[#F3E5AB]`}
